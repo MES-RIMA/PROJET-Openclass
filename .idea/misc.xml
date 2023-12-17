@@ -3,8 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/ic_baseline_swap_horizontal_circle_24.xml" value="0.106" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/activity_main_drawer_header.xml" value="0.1" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/activity_second.xml" value="0.1" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/fragment_currency_converter.xml" value="0.1" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/fragment_property_list.xml" value="0.1" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/menu/drawer_menu.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class OldMainActivity extends AppCompatActivity {
 
     private TextView textViewMain;
     private TextView textViewQuantity;
@@ -14,11 +14,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
         // first error
        // this.textViewMain = findViewById(R.id.activity_second_activity_text_view_main);
-        this.textViewMain = findViewById(R.id.activity_main_activity_text_view_main);
-        this.textViewQuantity = findViewById(R.id.activity_main_activity_text_view_quantity);
+       // this.textViewMain = findViewById(R.id.activity_main_activity_text_view_main);
+       // this.textViewQuantity = findViewById(R.id.activity_main_activity_text_view_quantity);
 
         this.configureTextViewMain();
         this.configureTextViewQuantity();
