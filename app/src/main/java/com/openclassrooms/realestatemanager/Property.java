@@ -1,7 +1,13 @@
 package com.openclassrooms.realestatemanager;
 
-public class Property {
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
+@Entity
+public class Property {
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "property_id")
     private long id;
     private PropertyType type;
     private String district;
@@ -22,7 +28,7 @@ public class Property {
     public enum PropertyType {
         Apartment, House, Penthouse, Loft, Mansion, Villa
     }
-    public Property(long id, PropertyType type, String district, int price, int surface, int numberOfRooms, int numberOfBathrooms, int numberOfBedrooms, String description, long mainPictureId, String address, boolean available, String listedDate, String soldDate, String realEstateAgent) {
+    public Property(PropertyType type, String district, int price, int surface, int numberOfRooms, int numberOfBathrooms, int numberOfBedrooms, String description, long mainPictureId, String address, boolean available, String listedDate, String soldDate, String realEstateAgent) {
         this.id = id;
         this.type = type;
         this.district = district;
