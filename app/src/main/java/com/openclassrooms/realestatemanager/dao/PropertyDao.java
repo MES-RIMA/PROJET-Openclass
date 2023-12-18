@@ -5,7 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.openclassrooms.realestatemanager.Property;
+import com.openclassrooms.realestatemanager.model.Property;
 
 import java.util.List;
 
@@ -14,6 +14,11 @@ public interface PropertyDao {
 
     @Query("SELECT * FROM Property")
     LiveData<List<Property>> fetchAllProperties();
+    @Query("SELECT * FROM Property WHERE property_id = :propertyId LIMIT 1")
+    LiveData<Property> fetchProperty(long propertyId);
+
+    @Query("UPDATE Property SET mainPictureId = :pictureId WHERE property_id =:propertyId")
+    int updateMainPicture(long propertyId, long pictureId);
 
     @Insert
     long insert(Property property);

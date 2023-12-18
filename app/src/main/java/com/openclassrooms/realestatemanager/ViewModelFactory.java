@@ -7,6 +7,9 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyListViewModel;
+import com.openclassrooms.realestatemanager.model.DataBase;
+import com.openclassrooms.realestatemanager.repository.PropertyPictureRepository;
+import com.openclassrooms.realestatemanager.repository.PropertyRepository;
 
 public class ViewModelFactory implements ViewModelProvider.Factory {
 

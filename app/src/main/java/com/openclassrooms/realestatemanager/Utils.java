@@ -4,8 +4,10 @@ import android.content.Context;
 import android.net.wifi.WifiManager;
 
 import java.text.DateFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by Philippe on 21/02/2018.
@@ -55,5 +57,30 @@ public class Utils {
     public static Boolean isInternetAvailable(Context context) {
         WifiManager wifi = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
         return wifi.isWifiEnabled();
+    }
+    public static String dollarString(int number) {
+        String formattedNumber = NumberFormat.getNumberInstance(Locale.US).format(number);
+        return "$"+formattedNumber;
+    }
+    /**
+     * Generate string from given square meters surface.
+     *
+     * @param surface surface value
+     * @return value followed by sq m
+     */
+    public static String surfaceString(int surface) {
+        Context context = MainApplication.getApplication();
+        return String.format(context.getString(R.string.placeholder_surface), surface);
+    }
+
+    /**
+     * Secure integer string
+     *
+     * @param integer surface value
+     * @return string representation of given integer
+     */
+    public static String integerString(int integer) {
+        Context context = MainApplication.getApplication();
+        return String.format(context.getString(R.string.placeholder_int), integer);
     }
 }

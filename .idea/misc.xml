@@ -3,13 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/ic_baseline_photo_24.xml" value="0.106" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/ic_baseline_swap_horizontal_circle_24.xml" value="0.106" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/no_photo.xml" value="0.106" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/setting.xml" value="0.106" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/activity_main_drawer_header.xml" value="0.1" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/activity_second.xml" value="0.1" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/fragment_currency_converter.xml" value="0.1" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/fragment_property_details.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/fragment_property_list.xml" value="0.1" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/fragment_property_list_item.xml" value="0.17864583333333334" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/property_picture_item.xml" value="0.17864583333333334" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/menu/drawer_menu.xml" value="0.1" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/menu/property_list_menu.xml" value="0.1796875" />
       </map>
     </option>
   </component>

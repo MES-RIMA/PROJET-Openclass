@@ -1,8 +1,9 @@
-package com.openclassrooms.realestatemanager;
+package com.openclassrooms.realestatemanager.repository;
 
 import androidx.lifecycle.LiveData;
 
 import com.openclassrooms.realestatemanager.dao.PropertyPictureDao;
+import com.openclassrooms.realestatemanager.model.PropertyPicture;
 
 import java.util.List;
 
@@ -13,10 +14,9 @@ public class PropertyPictureRepository {
         mPropertyPictureDao = propertyPictureDao;
     }
 
-    public LiveData<List<PropertyPicture>> fetchAllPictures() {
-        return mPropertyPictureDao.fetchAllPictures();
+    public LiveData<List<PropertyPicture>> fetchPictures(long projectId) {
+        return mPropertyPictureDao.fetchPictures(projectId);
     }
-
     public void insert(PropertyPicture propertyPicture) {
         mPropertyPictureDao.insert(propertyPicture);
     }
