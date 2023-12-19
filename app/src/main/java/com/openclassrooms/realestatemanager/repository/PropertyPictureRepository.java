@@ -26,4 +26,7 @@ public class PropertyPictureRepository {
     public void delete(PropertyPicture propertyPicture) {
         mPropertyPictureDao.delete(propertyPicture.getId());
     }
+    public int update(PropertyPicture propertyPicture) {
+        return mPropertyPictureDao.updateDescription(propertyPicture.getDescription(), propertyPicture.getId());
+    }
 }

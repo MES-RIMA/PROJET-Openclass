@@ -19,6 +19,52 @@ public interface PropertyDao {
 
     @Query("UPDATE Property SET mainPictureId = :pictureId, mainPictureUri = :uri WHERE property_id =:propertyId")
     int updateMainPicture(long propertyId, long pictureId, String uri);
+    @Query("UPDATE Property SET type = :type," +
+            "district = :district," +
+            "price = :price," +
+            "surface = :surface," +
+            "numberOfRooms = :numberOfRooms," +
+            "numberOfBathrooms= :numberOfBathrooms," +
+            "numberOfBedrooms = :numberOfBedrooms," +
+            "description = :description," +
+            "mainPictureId = :mainPictureId," +
+            "mainPictureUri = :mainPictureUri," +
+            "addressNumber = :addressNumber," +
+            "street = :street," +
+            "postalCode = :postalCode," +
+            "city = :city," +
+            "poiSwimmingPool = :poiSwimmingPool," +
+            "poiSchool = :poiSchool," +
+            "poiShopping = :poiShopping," +
+            "poiParking = :poiParking," +
+            "available = :available," +
+            "listedDate = :listedDate," +
+            "soldDate = :soldDate," +
+            "realEstateAgent = :realEstateAgent WHERE property_id =:propertyId")
+    int updateProperty(long propertyId,
+                       String type,
+                       String district,
+                       int price,
+                       int surface,
+                       int numberOfRooms,
+                       int numberOfBathrooms,
+                       int numberOfBedrooms,
+                       String description,
+                       long mainPictureId,
+                       String mainPictureUri,
+                       String addressNumber,
+                       String street,
+                       String postalCode,
+                       String city,
+                       boolean poiSwimmingPool,
+                       boolean poiSchool,
+                       boolean poiShopping,
+                       boolean poiParking,
+                       boolean available,
+                       String listedDate,
+                       String soldDate,
+                       String realEstateAgent
+    );
 
     @Insert
     long insert(Property property);

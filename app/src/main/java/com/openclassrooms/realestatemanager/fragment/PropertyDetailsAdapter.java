@@ -14,11 +14,11 @@ import com.openclassrooms.realestatemanager.utils.Utils;
 
 import java.util.List;
 
-public class PropertDetailsAdapter extends RecyclerView.Adapter<PropertDetailsAdapter.ViewHolder> {
+public class PropertyDetailsAdapter extends RecyclerView.Adapter<PropertyDetailsAdapter.ViewHolder> {
 
     private final List<PropertyPicture> mPictures;
 
-    public PropertDetailsAdapter(List<PropertyPicture> pictures) {
+    public PropertyDetailsAdapter(List<PropertyPicture> pictures) {
         mPictures = pictures;
     }
 
@@ -33,13 +33,13 @@ public class PropertDetailsAdapter extends RecyclerView.Adapter<PropertDetailsAd
 
     @NonNull
     @Override
-    public PropertDetailsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new PropertDetailsAdapter.ViewHolder(PropertyPictureItemBinding.inflate(LayoutInflater.from(parent.getContext()),
+    public PropertyDetailsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new PropertyDetailsAdapter.ViewHolder(PropertyPictureItemBinding.inflate(LayoutInflater.from(parent.getContext()),
                 parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PropertDetailsAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PropertyDetailsAdapter.ViewHolder holder, int position) {
         PropertyPicture picture = mPictures.get(position);
 
 

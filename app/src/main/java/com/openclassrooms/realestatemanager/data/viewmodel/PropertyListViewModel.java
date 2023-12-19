@@ -43,18 +43,16 @@ public class PropertyListViewModel extends ViewModel {
     public LiveData<List<PropertyPicture>> getCurrentPropertyPictures() {
         return mCurrentPropertyPictures;
     }
-    public void createProperty(Property property, List<PropertyPicture> picturesList) {
+    public void deleteCurrentProperty() {
+        Property currentProperty = mCurrentProperty.getValue();
+        List<PropertyPicture> pictures = mCurrentPropertyPictures.getValue();
+        if (currentProperty == null || pictures == null) return;
         mPropertyRepository.getExecutor().execute(() -> {
-            long propertyId = mPropertyRepository.insert(property);
-            for (PropertyPicture p : picturesList) {
-                p.setPropertyId(propertyId);
-                mPropertyPictureRepository.insert(p);
-            }
+            for (PropertyPicture p : pictures) mPropertyPictureRepository.delete(p);
+            mPropertyRepository.delete(currentProperty);
         });
     }
-    public void setMainPictureId(int pictureIndex) {
-        mMainPictureIndex = pictureIndex;
-    }
+
     public String generatePoiString(Property property) {
         Context context = MainApplication.getContext();
         String poiString = property.hasPoiSwimmingPool() ? context.getString(R.string.property_poi_swimming_pool) + ", " : "";

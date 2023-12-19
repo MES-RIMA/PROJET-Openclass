@@ -33,6 +33,32 @@ public class PropertyRepository {
     public void delete(Property property) {
         mPropertyDao.delete(property.getId());
     }
+    public int updateProperty(Property property) {
+        return mPropertyDao.updateProperty(property.getId(),
+                property.getType(),
+                property.getDistrict(),
+                property.getPrice(),
+                property.getSurface(),
+                property.getNumberOfBedrooms(),
+                property.getNumberOfBathrooms(),
+                property.getNumberOfBedrooms(),
+                property.getDescription(),
+                property.getMainPictureId(),
+                property.getMainPictureUri(),
+                property.getAddressNumber(),
+                property.getStreet(),
+                property.getPostalCode(),
+                property.getCity(),
+                property.hasPoiSwimmingPool(),
+                property.hasPoiSchool(),
+                property.hasPoiShopping(),
+                property.hasPoiParking(),
+                property.isAvailable(),
+                property.getListedDate(),
+                property.getSoldDate(),
+                property.getRealEstateAgent());
+    }
+
     public ExecutorService getExecutor() {
         return mExecutor;
     }

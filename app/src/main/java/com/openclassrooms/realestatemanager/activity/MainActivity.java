@@ -63,6 +63,7 @@ public class MainActivity  extends BaseActivity<ActivityMainBinding> {
             switch (destination.getId()) {
                 case R.id.pictureManagerFragment:
                 case R.id.pictureViewerFragment:
+                case R.id.pictureManagerEditFragment:
                     showToolbar(false);
                     break;
                 default:
