@@ -70,9 +70,7 @@ public class PropertyDetailsFragment extends Fragment {
     private void populateDetails(Property property) {
         mProperty = property;
         mBinding.surface.setText(Utils.surfaceString(property.getSurface()));
-        mBinding.numberOfRooms.setText(Utils.integerString(property.getNumberOfRooms()));
-        mBinding.numberOfBathrooms.setText(Utils.integerString(property.getNumberOfBathrooms()));
-        mBinding.numberOfBedrooms.setText(Utils.integerString(property.getNumberOfBedrooms()));
+        mBinding.numberOfRooms.setText(Utils.integerString(property.getNumberOfRooms()));;
         mBinding.poi.setText(mPropertyListViewModel.generatePoiString(property));
         mBinding.location.setText(property.getFullAddress());
         mBinding.description.setText(property.getDescription());

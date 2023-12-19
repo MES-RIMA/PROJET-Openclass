@@ -24,8 +24,6 @@ public interface PropertyDao {
             "price = :price," +
             "surface = :surface," +
             "numberOfRooms = :numberOfRooms," +
-            "numberOfBathrooms= :numberOfBathrooms," +
-            "numberOfBedrooms = :numberOfBedrooms," +
             "description = :description," +
             "mainPictureId = :mainPictureId," +
             "mainPictureUri = :mainPictureUri," +
@@ -47,8 +45,6 @@ public interface PropertyDao {
                        int price,
                        int surface,
                        int numberOfRooms,
-                       int numberOfBathrooms,
-                       int numberOfBedrooms,
                        String description,
                        long mainPictureId,
                        String mainPictureUri,

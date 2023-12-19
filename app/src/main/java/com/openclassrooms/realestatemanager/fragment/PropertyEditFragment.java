@@ -134,8 +134,6 @@ public class PropertyEditFragment extends Fragment implements CommandPictureMana
                 Integer.parseInt(mBinding.price.getText().toString()),
                 Integer.parseInt(mBinding.surface.getText().toString()),
                 Integer.parseInt(mBinding.numberOfRooms.getText().toString()),
-                Integer.parseInt(mBinding.numberOfBedrooms.getText().toString()),
-                Integer.parseInt(mBinding.numberOfBathrooms.getText().toString()),
                 mBinding.description.getText().toString(),
                 getMainPictureIndex(),
                 "",
@@ -160,8 +158,6 @@ public class PropertyEditFragment extends Fragment implements CommandPictureMana
         if (mBinding.district.getText().toString().isEmpty()) return false;
         if (mBinding.price.getText().toString().isEmpty()) return false;
         if (mBinding.numberOfRooms.getText().toString().isEmpty()) return false;
-        if (mBinding.numberOfBedrooms.getText().toString().isEmpty()) return false;
-        if (mBinding.numberOfBathrooms.getText().toString().isEmpty()) return false;
         if (mBinding.description.getText().toString().isEmpty()) return false;
 
         if (mBinding.addressNumber.getText().toString().isEmpty()) return false;
@@ -183,8 +179,6 @@ public class PropertyEditFragment extends Fragment implements CommandPictureMana
         mBinding.surface.setText(Utils.integerString(property.getSurface()));
         mBinding.price.setText(Utils.integerString(property.getPrice()));
         mBinding.numberOfRooms.setText(Utils.integerString(property.getNumberOfRooms()));
-        mBinding.numberOfBathrooms.setText(Utils.integerString(property.getNumberOfBathrooms()));
-        mBinding.numberOfBedrooms.setText(Utils.integerString(property.getNumberOfBedrooms()));
         mBinding.addressNumber.setText(property.getAddressNumber());
         mBinding.street.setText(property.getStreet());
         mBinding.postalCode.setText(property.getPostalCode());

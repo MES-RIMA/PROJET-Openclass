@@ -14,8 +14,6 @@ public class Property {
     private int price;
     private int surface;
     private int numberOfRooms;
-    private int numberOfBathrooms;
-    private int numberOfBedrooms;
     private String description;
     private long mainPictureId;
     private String mainPictureUri;
@@ -33,14 +31,12 @@ public class Property {
     private String soldDate;
     private String realEstateAgent;
 
-    public Property(String type, String district, int price, int surface, int numberOfRooms, int numberOfBathrooms, int numberOfBedrooms, String description, long mainPictureId, String mainPictureUri, String addressNumber, String street, String postalCode, String city, boolean poiSwimmingPool, boolean poiSchool, boolean poiShopping, boolean poiParking, boolean available, String listedDate, String soldDate, String realEstateAgent) {
+    public Property(String type, String district, int price, int surface, int numberOfRooms , String description, long mainPictureId, String mainPictureUri, String addressNumber, String street, String postalCode, String city, boolean poiSwimmingPool, boolean poiSchool, boolean poiShopping, boolean poiParking, boolean available, String listedDate, String soldDate, String realEstateAgent) {
         this.type = type;
         this.district = district;
         this.price = price;
         this.surface = surface;
         this.numberOfRooms = numberOfRooms;
-        this.numberOfBathrooms = numberOfBathrooms;
-        this.numberOfBedrooms = numberOfBedrooms;
         this.description = description;
         this.mainPictureId = mainPictureId;
         this.mainPictureUri = mainPictureUri;
@@ -101,17 +97,6 @@ public class Property {
         this.numberOfRooms = numberOfRooms;
     }
 
-    public int getNumberOfBathrooms() {
-        return numberOfBathrooms;
-    }
-
-    public void setNumberOfBathrooms(int numberOfBathrooms) { this.numberOfBathrooms = numberOfBathrooms; }
-
-    public int getNumberOfBedrooms() {
-        return numberOfBedrooms;
-    }
-
-    public void setNumberOfBedrooms(int numberOfBedrooms) { this.numberOfBedrooms = numberOfBedrooms; }
 
     public String getDescription() {
         return description;
@@ -235,8 +220,6 @@ public class Property {
         if (price != property.getPrice()) return false;
         if (surface != property.getSurface()) return false;
         if (numberOfRooms != property.getNumberOfRooms()) return false;
-        if (numberOfBathrooms != property.getNumberOfBathrooms()) return false;
-        if (numberOfBedrooms != property.getNumberOfBedrooms()) return false;
         if (!description.contentEquals(property.getDescription())) return false;
         if (mainPictureId != property.getMainPictureId()) return false;
         if (price != property.getPrice()) return false;
