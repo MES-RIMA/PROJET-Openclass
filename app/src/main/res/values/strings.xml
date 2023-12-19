@@ -34,6 +34,11 @@
     <string name="property_agent">Real estate agent:</string>
     <string name="property_successfully_created">New property has been successfully created</string>
     <string name="property_not_correct">Property fields are not correct</string>
+    <string name="property_poi">Points of interest</string>
+    <string name="property_poi_swimming_pool">Swimming pool</string>
+    <string name="property_poi_school">Near schools</string>
+    <string name="property_poi_shopping">Near shopping</string>
+    <string name="property_poi_parking">Parking</string>
 
     <!-- Property type -->
     <string-array name="property_types" >
@@ -43,6 +48,7 @@
         <item>Loft</item>
         <item>Mansion</item>
         <item>Villa</item>
+
     </string-array>
     <!-- Property picture -->
     <string name="picture_is_main">Main picture</string>

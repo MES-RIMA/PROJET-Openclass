@@ -126,7 +126,8 @@ public class PropertyAddFragment extends Fragment implements CommandPictureManag
         Toast.makeText(requireActivity(), getString(R.string.property_successfully_created), Toast.LENGTH_LONG).show();
         findNavController(view).navigate(R.id.propertyListFragment);
     }
-
+    @SuppressWarnings("all")
+    // Fields nullity is checked before we call this method.
     private Property generatePropertyFromInputsWithoutMainPicture() {
 
         return new Property(
@@ -144,6 +145,10 @@ public class PropertyAddFragment extends Fragment implements CommandPictureManag
                 mBinding.street.getText().toString(),
                 mBinding.postalCode.getText().toString(),
                 mBinding.city.getText().toString(),
+                mBinding.poiSwimmingPool.isChecked(),
+                mBinding.poiSchool.isChecked(),
+                mBinding.poiShopping.isChecked(),
+                mBinding.poiParking.isChecked(),
                 mBinding.available.isChecked(),
                 mBinding.listedDate.getText().toString(),
                 mBinding.soldDate.getText().toString(),
@@ -167,6 +172,7 @@ public class PropertyAddFragment extends Fragment implements CommandPictureManag
         if (mBinding.street.getText().toString().isEmpty()) return false;
         if (mBinding.postalCode.getText().toString().isEmpty()) return false;
         if (mBinding.city.getText().toString().isEmpty()) return false;
+
         if (mBinding.listedDate.getText().toString().isEmpty()) return false;
         if (!mBinding.available.isChecked() && mBinding.soldDate.getText().toString().isEmpty()) return false;
         if (mBinding.realEstateAgent.getText().toString().isEmpty()) return false;

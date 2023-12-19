@@ -64,6 +64,7 @@ public class PropertyDetailsFragment extends Fragment {
         mBinding.numberOfRooms.setText(Utils.integerString(property.getNumberOfRooms()));
         mBinding.numberOfBathrooms.setText(Utils.integerString(property.getNumberOfBathrooms()));
         mBinding.numberOfBedrooms.setText(Utils.integerString(property.getNumberOfBedrooms()));
+        mBinding.poi.setText(mPropertyListViewModel.generatePoiString(property));
         mBinding.location.setText(property.getFullAddress());
         mBinding.description.setText(property.getDescription());
         mBinding.listedDate.setText(property.getListedDate());

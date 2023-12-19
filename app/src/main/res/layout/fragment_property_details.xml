@@ -4,6 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pictures"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="@dimen/margin_default"
+        app:layout_constraintTop_toBottomOf="@id/pictures"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="@dimen/margin_default"
+        app:layout_constraintTop_toBottomOf="@id/pictures"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" >
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineHalfWidth"
         android:layout_width="wrap_content"
@@ -11,24 +30,14 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/pictures"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/property_picture_thumbnail_size"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <ImageView
         android:id="@+id/surfaceIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default"
-        android:layout_marginTop="@dimen/margin_medium"
         android:contentDescription="@null"
         android:src="@drawable/ic_baseline_settings_overscan_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pictures" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/surfaceLabel"
@@ -53,7 +62,6 @@
         android:id="@+id/numberOfRoomsIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default"
         android:layout_marginTop="@dimen/margin_large"
         android:contentDescription="@null"
         android:src="@drawable/ic_baseline_home_24"
@@ -79,46 +87,16 @@
         app:layout_constraintStart_toEndOf="@id/numberOfRoomsIcon"
         app:layout_constraintTop_toBottomOf="@id/numberOfRoomsLabel" />
 
-    <ImageView
-        android:id="@+id/numberOfBathroomsIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default"
-        android:layout_marginTop="@dimen/margin_large"
-        android:contentDescription="@null"
-        android:src="@drawable/ic_baseline_bathroom_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/numberOfRoomsIcon" />
-
-    <TextView
-        android:id="@+id/numberOfBathroomsLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default"
-        android:text="@string/property_number_of_bathrooms"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/numberOfBathroomsIcon"
-        app:layout_constraintTop_toTopOf="@id/numberOfBathroomsIcon" />
-
-    <TextView
-        android:id="@+id/numberOfBathrooms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default"
-        android:text="@string/property_number_of_bathrooms"
-        app:layout_constraintStart_toEndOf="@id/numberOfBathroomsIcon"
-        app:layout_constraintTop_toBottomOf="@id/numberOfBathroomsLabel" />
 
     <ImageView
         android:id="@+id/numberOfBedroomsIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default"
         android:layout_marginTop="@dimen/margin_large"
         android:contentDescription="@null"
         android:src="@drawable/ic_baseline_local_hotel_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/numberOfBathroomsIcon" />
+        app:layout_constraintTop_toTopOf="@id/numberOfRoomsIcon" />
 
     <TextView
         android:id="@+id/numberOfBedroomsLabel"
@@ -140,15 +118,72 @@
         app:layout_constraintTop_toBottomOf="@id/numberOfBedroomsLabel" />
 
     <ImageView
+        android:id="@+id/numberOfBathroomsIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_baseline_bathroom_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/numberOfBedroomsIcon" />
+
+    <TextView
+        android:id="@+id/numberOfBathroomsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:text="@string/property_number_of_bathrooms"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/numberOfBathroomsIcon"
+        app:layout_constraintTop_toTopOf="@id/numberOfBathroomsIcon" />
+
+    <TextView
+        android:id="@+id/numberOfBathrooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:text="@string/property_number_of_bathrooms"
+        app:layout_constraintStart_toEndOf="@id/numberOfBathroomsIcon"
+        app:layout_constraintTop_toBottomOf="@id/numberOfBathroomsLabel" />
+
+    <ImageView
+        android:id="@+id/poiIcon"
+        android:layout_width="@dimen/icon_small"
+        android:layout_height="@dimen/icon_small"
+        android:layout_marginTop="@dimen/margin_large"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_baseline_check_circle_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/numberOfBathroomsIcon" />
+
+    <TextView
+        android:id="@+id/poiLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:text="@string/property_poi"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/poiIcon"
+        app:layout_constraintTop_toTopOf="@id/poiIcon" />
+
+    <TextView
+        android:id="@+id/poi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_default"
+        android:text="@string/property_poi"
+        app:layout_constraintStart_toEndOf="@id/poiIcon"
+        app:layout_constraintTop_toBottomOf="@id/poiLabel" />
+
+    <ImageView
         android:id="@+id/locationIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_default"
-        android:layout_marginTop="@dimen/margin_medium"
         android:contentDescription="@null"
         android:src="@drawable/ic_baseline_location_on_24"
         app:layout_constraintStart_toStartOf="@id/guidelineHalfWidth"
-        app:layout_constraintTop_toBottomOf="@id/pictures" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/locationLabel"
@@ -175,19 +210,17 @@
         android:id="@+id/descriptionLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default"
-        android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginTop="@dimen/margin_default"
         android:text="@string/property_description"
         android:textSize="@dimen/text_size_medium"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/numberOfBedrooms" />
+        app:layout_constraintTop_toBottomOf="@id/poi" />
 
     <TextView
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default"
         android:text="@string/property_description"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
@@ -198,7 +231,6 @@
         android:id="@+id/listedDateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default"
         android:layout_marginTop="@dimen/margin_default"
         android:text="@string/property_listed_date"
         android:textSize="@dimen/text_size_medium"
@@ -220,7 +252,6 @@
         android:id="@+id/realEstateAgentLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_default"
         android:layout_marginTop="@dimen/margin_mini"
         android:text="@string/property_agent"
         android:textSize="@dimen/text_size_medium"
@@ -237,5 +268,7 @@
         android:textAlignment="textStart"
         app:layout_constraintBottom_toBottomOf="@id/realEstateAgentLabel"
         app:layout_constraintStart_toEndOf="@id/realEstateAgentLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
