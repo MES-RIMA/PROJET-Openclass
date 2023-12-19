@@ -8,7 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.openclassrooms.realestatemanager.Utils;
+import com.openclassrooms.realestatemanager.utils.Utils;
 import com.openclassrooms.realestatemanager.dao.PropertyDao;
 import com.openclassrooms.realestatemanager.dao.PropertyPictureDao;
 
@@ -26,6 +26,10 @@ public abstract class DataBase extends RoomDatabase {
     public abstract PropertyDao propertyDao();
 
     public abstract PropertyPictureDao propertyPictureDao();
+
+    public ExecutorService getDatabaseWriteExecutor() {
+        return databaseWriteExecutor;
+    }
 
     // --- INSTANCE ---
     public static DataBase getDatabase(Context context) {
@@ -57,7 +61,7 @@ public abstract class DataBase extends RoomDatabase {
         propertyPictureDao.deleteAll();
 
         Property property1 = new Property(
-                Property.PropertyType.Penthouse,
+                "Penthouse",
                 "Manhattan",
                 9000000,
                 280,
@@ -65,14 +69,18 @@ public abstract class DataBase extends RoomDatabase {
                 2,
                 4,
                 "Beautiful penthouse",
-                0,
-                "4 Wall St New York, NY 10005",
+                -1L,
+                "",
+                "4",
+                "Wall St",
+                "10005",
+                "New York",
                 true,
                 Utils.getTodayDate(),
                 "",
                 "Randa");
         Property property2 = new Property(
-                Property.PropertyType.Apartment,
+                "Apartment",
                 "Brooklyn",
                 700000,
                 90,
@@ -80,15 +88,19 @@ public abstract class DataBase extends RoomDatabase {
                 1,
                 2,
                 "Superb penthouse",
-                0,
-                "145 Brooks St New York, NY 10020",
+                -1L,
+                "",
+                "4",
+                "Wall St",
+                "10005",
+                "New York",
                 true,
                 Utils.getTodayDate(),
                 "",
                 "Buck");
 
         Property property3 = new Property(
-                Property.PropertyType.Loft,
+               "Loft",
                 "Manhattan",
                 1200000,
                 100,
@@ -96,8 +108,12 @@ public abstract class DataBase extends RoomDatabase {
                 1,
                 1,
                 "Insane loft",
-                0,
-                "38 Wall St New York, NY 10005",
+                -1L,
+                "",
+                "4",
+                "Wall St",
+                "10005",
+                "New York",
                 true,
                 Utils.getTodayDate(),
                 "",
@@ -117,8 +133,5 @@ public abstract class DataBase extends RoomDatabase {
 
         long pictureId3 = propertyPictureDao.insert(new PropertyPicture(propertyId3, "Living room", ""));
 
-        propertyDao.updateMainPicture(propertyId1, pictureId1);
-        propertyDao.updateMainPicture(propertyId2, pictureId2);
-        propertyDao.updateMainPicture(propertyId3, pictureId3);
     }
 }

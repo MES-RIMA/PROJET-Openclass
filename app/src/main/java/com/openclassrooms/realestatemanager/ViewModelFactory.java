@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.openclassrooms.realestatemanager.data.viewmodel.PropertyAddViewModel;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyListViewModel;
 import com.openclassrooms.realestatemanager.model.DataBase;
 import com.openclassrooms.realestatemanager.repository.PropertyPictureRepository;
@@ -35,8 +36,8 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     private ViewModelFactory(Context context) {
         DataBase database = DataBase.getDatabase(context);
 
-        mPropertyRepository = new PropertyRepository(database.propertyDao());
-        mPropertyPictureRepository = new PropertyPictureRepository(database.propertyPictureDao());
+        mPropertyRepository = new PropertyRepository(database.propertyDao(), database.getDatabaseWriteExecutor());
+        mPropertyPictureRepository = new PropertyPictureRepository(database.propertyPictureDao(), database.getDatabaseWriteExecutor());
     }
 
     @SuppressWarnings("unchecked")
@@ -45,6 +46,9 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     public <T extends ViewModel> T create(Class<T> modelClass) {
         if (modelClass.isAssignableFrom(PropertyListViewModel.class)) {
             return (T) new PropertyListViewModel(mPropertyRepository, mPropertyPictureRepository);
+        }
+        else if (modelClass.isAssignableFrom(PropertyAddViewModel.class)) {
+            return (T) new PropertyAddViewModel(mPropertyRepository, mPropertyPictureRepository);
         }
         throw new IllegalArgumentException("Unknown ViewModel class");
     }

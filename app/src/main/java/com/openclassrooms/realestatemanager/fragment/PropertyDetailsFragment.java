@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.openclassrooms.realestatemanager.Utils;
+import com.openclassrooms.realestatemanager.utils.Utils;
 import com.openclassrooms.realestatemanager.ViewModelFactory;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyListViewModel;
 import com.openclassrooms.realestatemanager.databinding.FragmentPropertyDetailsBinding;
@@ -34,10 +34,6 @@ public class PropertyDetailsFragment extends Fragment {
                              Bundle savedInstanceState) {
         mBinding = FragmentPropertyDetailsBinding.inflate(inflater, container, false);
         mPropertyListViewModel = new ViewModelProvider(requireActivity(), ViewModelFactory.getInstance(requireActivity())).get(PropertyListViewModel.class);
-
-        //currentPropertyId = PropertyDetailsFragmentArgs.fromBundle(requireArguments()).getPropertyId();
-
-        //populateDetails(currentProperty);
         initPicturesRecyclerView();
         initObservers();
 
@@ -49,7 +45,7 @@ public class PropertyDetailsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        PropertyPictureAdapter mAdapter = new PropertyPictureAdapter(mPictures);
+        PropertDetailsAdapter mAdapter = new PropertDetailsAdapter(mPictures);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -68,7 +64,7 @@ public class PropertyDetailsFragment extends Fragment {
         mBinding.numberOfRooms.setText(Utils.integerString(property.getNumberOfRooms()));
         mBinding.numberOfBathrooms.setText(Utils.integerString(property.getNumberOfBathrooms()));
         mBinding.numberOfBedrooms.setText(Utils.integerString(property.getNumberOfBedrooms()));
-        mBinding.location.setText(property.getAddress());
+        mBinding.location.setText(property.getFullAddress());
         mBinding.description.setText(property.getDescription());
         mBinding.listedDate.setText(property.getListedDate());
         mBinding.realEstateAgent.setText(property.getRealEstateAgent());

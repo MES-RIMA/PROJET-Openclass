@@ -6,23 +6,24 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.openclassrooms.realestatemanager.databinding.PropertyPictureItemBinding;
+import com.openclassrooms.realestatemanager.databinding.PictureViewerItemBinding;
 import com.openclassrooms.realestatemanager.model.PropertyPicture;
+import com.openclassrooms.realestatemanager.utils.Utils;
 
 import java.util.List;
 
-public class PropertyPictureAdapter extends RecyclerView.Adapter<PropertyPictureAdapter.ViewHolder> {
+public class PictureViewerAdapter extends RecyclerView.Adapter<PictureViewerAdapter.ViewHolder> {
 
     private final List<PropertyPicture> mPictures;
 
-    public PropertyPictureAdapter(List<PropertyPicture> pictures) {
+    public PictureViewerAdapter(List<PropertyPicture> pictures) {
         mPictures = pictures;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private PropertyPictureItemBinding mBinding;
+        private PictureViewerItemBinding mBinding;
 
-        public ViewHolder(PropertyPictureItemBinding binding) {
+        public ViewHolder(PictureViewerItemBinding binding) {
             super(binding.getRoot());
             mBinding = binding;
         }
@@ -30,17 +31,17 @@ public class PropertyPictureAdapter extends RecyclerView.Adapter<PropertyPicture
 
     @NonNull
     @Override
-    public PropertyPictureAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new PropertyPictureAdapter.ViewHolder(PropertyPictureItemBinding.inflate(LayoutInflater.from(parent.getContext()),
+    public PictureViewerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new PictureViewerAdapter.ViewHolder(PictureViewerItemBinding.inflate(LayoutInflater.from(parent.getContext()),
                 parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PropertyPictureAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PictureViewerAdapter.ViewHolder holder, int position) {
         PropertyPicture picture = mPictures.get(position);
 
-        //if (picture.getUri() != null)
         holder.mBinding.description.setText(picture.getDescription());
+        Utils.setPicture(picture.getUri(), holder.mBinding.picture);
     }
 
     @Override

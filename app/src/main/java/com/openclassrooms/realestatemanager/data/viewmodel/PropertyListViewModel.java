@@ -14,8 +14,11 @@ import java.util.List;
 public class PropertyListViewModel extends ViewModel {
     private PropertyRepository mPropertyRepository;
     private PropertyPictureRepository mPropertyPictureRepository;
+
     private MutableLiveData<Property> mCurrentProperty = new MutableLiveData<>();
     private LiveData<List<PropertyPicture>> mCurrentPropertyPictures;
+    private int mMainPictureIndex = -1;
+
     public PropertyListViewModel(PropertyRepository propertyRepository, PropertyPictureRepository propertyPictureRepository) {
         mPropertyRepository = propertyRepository;
         mPropertyPictureRepository = propertyPictureRepository;
@@ -35,5 +38,17 @@ public class PropertyListViewModel extends ViewModel {
 
     public LiveData<List<PropertyPicture>> getCurrentPropertyPictures() {
         return mCurrentPropertyPictures;
+    }
+    public void createProperty(Property property, List<PropertyPicture> picturesList) {
+        mPropertyRepository.getExecutor().execute(() -> {
+            long propertyId = mPropertyRepository.insert(property);
+            for (PropertyPicture p : picturesList) {
+                p.setPropertyId(propertyId);
+                mPropertyPictureRepository.insert(p);
+            }
+        });
+    }
+    public void setMainPictureId(int pictureIndex) {
+        mMainPictureIndex = pictureIndex;
     }
 }

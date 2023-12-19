@@ -9,11 +9,7 @@
         android:id="@+id/propertyListFragment"
         android:name="com.openclassrooms.realestatemanager.fragment.PropertyListFragment"
         android:label="@string/toolbar_properties_list"
-        tools:layout="@layout/fragment_property_list">
-        <action
-            android:id="@+id/navigateFromPropertyListToDetails"
-            app:destination="@id/propertyDetailsFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_property_list"/>
     <fragment
         android:id="@+id/currencyConverterFragment"
         android:name="com.openclassrooms.realestatemanager.fragment.CurrencyConverterFragment"
@@ -22,5 +18,36 @@
     <fragment
         android:id="@+id/propertyDetailsFragment"
         android:name="com.openclassrooms.realestatemanager.fragment.PropertyDetailsFragment"
-        android:label="PropertyDetailsFragment" />
+        android:label="@string/toolbar_property_details" >
+        <action
+            android:id="@+id/fromDetailsFragmentToPictureViewer"
+            app:destination="@id/pictureViewerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyAddFragment"
+        android:name="com.openclassrooms.realestatemanager.fragment.PropertyAddFragment"
+        android:label="@string/toolbar_add_new_property" >
+        <action
+            android:id="@+id/fromAddFragmentToPictureManager"
+            app:destination="@id/pictureManagerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pictureManagerFragment"
+        android:name="com.openclassrooms.realestatemanager.fragment.PictureManagerFragment"
+        android:label="PictureManagerFragment" >
+        <argument
+            android:name="pictureRowIndex"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+    <fragment
+        android:id="@+id/pictureViewerFragment"
+        android:name="com.openclassrooms.realestatemanager.fragment.PictureViewerFragment"
+        android:label="PictureViewerFragment" >
+        <argument
+            android:name="pictureRowIndex"
+            app:argType="integer"
+            android:defaultValue="-1" />
+    </fragment>
+
 </navigation>

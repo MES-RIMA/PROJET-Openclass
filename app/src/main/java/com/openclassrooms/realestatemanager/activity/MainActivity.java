@@ -1,6 +1,8 @@
 package com.openclassrooms.realestatemanager.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
@@ -20,6 +22,7 @@ public class MainActivity  extends BaseActivity<ActivityMainBinding> {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initNavigationComponents();
+        ConfigureNavigationComponentsDisplayRules();
     }
 
     @Override
@@ -50,11 +53,40 @@ public class MainActivity  extends BaseActivity<ActivityMainBinding> {
         NavigationUI.setupWithNavController(mBinding.drawerContent, mNavController);
         NavigationUI.setupWithNavController(mBinding.toolbar, mNavController, appBarConfiguration);
     }
+    /**
+     * Hide toolbar for specifics fragments
+     * ( pictureManagerFragment, pictureViewerFragment)
+     */
+    @SuppressLint("NonConstantResourceId")
+    private void ConfigureNavigationComponentsDisplayRules() {
+        mNavController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            switch (destination.getId()) {
+                case R.id.pictureManagerFragment:
+                case R.id.pictureViewerFragment:
+                    showToolbar(false);
+                    break;
+                default:
+                    showToolbar(true);
+            }
+        });
+    }
 
+    /**
+     * Set visibility of toolbar
+     *
+     * @param visible true show both toolbar and bottom navigation
+     */
+    private void showToolbar(boolean visible) {
+        int visibility = visible ? View.VISIBLE : View.GONE;
+        mBinding.toolbar.setVisibility(visibility);
+    }
+    @SuppressWarnings("all")
+    // mNavController.getCurrentDestination().getId() shall never be null
     @Override
     public void onBackPressed() {
         //Close Drawer if it's open
         if (mBinding.drawerLayout.isDrawerOpen(GravityCompat.START))
             mBinding.drawerLayout.closeDrawer(GravityCompat.START);
+        else if (mNavController.getCurrentDestination().getId() != R.id.propertyListFragment) super.onBackPressed();
     }
 }

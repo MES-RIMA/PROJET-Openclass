@@ -6,19 +6,21 @@ import com.openclassrooms.realestatemanager.dao.PropertyPictureDao;
 import com.openclassrooms.realestatemanager.model.PropertyPicture;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 public class PropertyPictureRepository {
     private final PropertyPictureDao mPropertyPictureDao;
-
-    public PropertyPictureRepository(PropertyPictureDao propertyPictureDao) {
+    private final ExecutorService mExecutor;
+    public PropertyPictureRepository(PropertyPictureDao propertyPictureDao, ExecutorService executor) {
         mPropertyPictureDao = propertyPictureDao;
+        mExecutor = executor;
     }
 
     public LiveData<List<PropertyPicture>> fetchPictures(long projectId) {
         return mPropertyPictureDao.fetchPictures(projectId);
     }
-    public void insert(PropertyPicture propertyPicture) {
-        mPropertyPictureDao.insert(propertyPicture);
+    public long insert(PropertyPicture propertyPicture) {
+        return mPropertyPictureDao.insert(propertyPicture);
     }
 
     public void delete(PropertyPicture propertyPicture) {
