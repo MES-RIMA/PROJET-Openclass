@@ -55,8 +55,33 @@ public class PropertyRepository {
                 property.getListedDate(),
                 property.getSoldDate(),
                 property.getRealEstateAgent());
-    }
 
+    }
+    public LiveData<List<Property>> searchProperty(String type,
+                                                   String district,
+                                                   Integer minPrice,
+                                                   Integer maxPrice,
+                                                   Integer minSurface,
+                                                   Integer maxSurface,
+                                                   Integer minRooms,
+                                                   Integer maxRooms,
+                                                   boolean hasSwimmingPool,
+                                                   boolean hasSchool,
+                                                   boolean hasShopping,
+                                                   boolean hasParking) {
+        return mPropertyDao.searchProperty(type,
+                district,
+                minPrice,
+                maxPrice,
+                minSurface,
+                maxSurface,
+                minRooms,
+                maxRooms,
+                hasSwimmingPool,
+                hasSchool,
+                hasShopping,
+                hasParking);
+    }
     public ExecutorService getExecutor() {
         return mExecutor;
     }

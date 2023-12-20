@@ -16,18 +16,21 @@
     <string name="property_type">Type</string>
     <string name="property_district">District</string>
     <string name="property_price">Price</string>
+    <string name="property_price_min">Minimum price</string>
+    <string name="property_price_max">Maximum price</string>
     <string name="property_surface">Surface</string>
+    <string name="property_surface_min">Minimum surface</string>
+    <string name="property_surface_max">Maximum surface</string>
     <string name="property_available">Available</string>
     <string name="property_number_of_rooms">Number of rooms</string>
-    <string name="property_number_of_bathrooms">Number of bathrooms</string>
-    <string name="property_number_of_bedrooms">Number of bedrooms</string>
     <string name="property_rooms">Rooms</string>
-    <string name="property_bathrooms">Bathrooms</string>
-    <string name="property_bedrooms">Bedrooms</string>
+    <string name="property_number_of_rooms_min">Minimum rooms</string>
+    <string name="property_number_of_rooms_max">Maximum rooms</string>
     <string name="property_address">Address</string>
     <string name="property_address_number">Number</string>
     <string name="property_street">Street</string>
     <string name="property_postal_code">Postal code</string>
+    <string name="property_at_least_one_picture">You must provide at least one picture</string>
     <string name="property_city">City</string>
     <string name="property_description">Description</string>
     <string name="property_listed_date">Listed on:</string>
@@ -41,7 +44,8 @@
     <string name="property_poi_school">Near schools</string>
     <string name="property_poi_shopping">Near shopping</string>
     <string name="property_poi_parking">Parking</string>
-
+    <string name="property_no_match">No property match your search</string>
+    <string name="property_search_no_result">Your search criteria returned no results</string>
     <!-- Property type -->
     <string-array name="property_types" >
         <item>Apartment</item>
@@ -59,7 +63,7 @@
     <string name="picture_description">Description</string>
     <!-- Buttons -->
     <string name="button_save">Save</string>
-
+    <string name="button_search">Search</string>
     <!-- Titles -->
     <string name="title_pick_a_date">Pick a date</string>
 </resources>

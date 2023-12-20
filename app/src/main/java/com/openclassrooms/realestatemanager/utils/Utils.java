@@ -126,7 +126,7 @@ public class Utils {
         Glide.with(MainApplication.getContext())
                 .load(uri)
                 //.apply(new RequestOptions().centerCrop())
-                //.error(R.drawable.ic_sharp_no_photography_24)
+                .error(R.drawable.ic_baseline_photo_camera_24)
                 .into(imageView);
     }
 }

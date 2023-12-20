@@ -82,7 +82,7 @@ public class MainActivity  extends BaseActivity<ActivityMainBinding> {
         mBinding.toolbar.setVisibility(visibility);
     }
     @SuppressWarnings("all")
-    // mNavController.getCurrentDestination().getId() shall never be null
+    //SuppressWarnings: as graph has a start destination mNavController.getCurrentDestination() won't be null
     @Override
     public void onBackPressed() {
         //Close Drawer if it's open

@@ -67,7 +67,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="fromAddFragmentToPictureManager">
+                            <entry key="fromAddFragmentToPictureManagerAdd">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -120,6 +120,18 @@
                     </value>
                   </entry>
                   <entry key="propertyListFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="propertySearchFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">

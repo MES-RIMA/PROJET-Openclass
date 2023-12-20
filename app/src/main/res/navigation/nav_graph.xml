@@ -66,4 +66,8 @@
             app:argType="integer"
             android:defaultValue="-1" />
     </fragment>
+    <fragment
+        android:id="@+id/propertySearchFragment"
+        android:name="com.openclassrooms.realestatemanager.fragment.PropertySearchFragment"
+        android:label="@string/toolbar_search_property" />
 </navigation>
