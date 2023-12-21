@@ -84,7 +84,7 @@ public class PropertyListFragment extends Fragment implements CommandSelectPrope
     }
     @Override
     public void selectProperty(Property property) {
-        mPropertyListViewModel.setCurrentProperty(property);
+        mPropertyListViewModel.setCurrentProperty(getViewLifecycleOwner(), property);
 
     }
     @Override

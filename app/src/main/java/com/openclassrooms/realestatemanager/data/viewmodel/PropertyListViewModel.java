@@ -26,9 +26,9 @@ public class PropertyListViewModel extends ViewModel {
     private PropertyRepository mPropertyRepository;
     private PropertyPictureRepository mPropertyPictureRepository;
     private MutableLiveData<Property> mCurrentProperty = new MutableLiveData<>();
-    private LiveData<List<PropertyPicture>> mCurrentPropertyPictures;
+    private MutableLiveData<List<PropertyPicture>> mCurrentPropertyPictures = new MutableLiveData<>();
     private LocationRepository mLocationRepository;
-    private MutableLiveData<List<Property>> mCurrentPropertiesList = new MutableLiveData(new ArrayList<>());
+    private MutableLiveData<List<Property>> mCurrentPropertiesList = new MutableLiveData<>(new ArrayList<>());
     private ExecutorService mExecutorService;
     private boolean displayingSearch = false;
 
@@ -89,15 +89,15 @@ public class PropertyListViewModel extends ViewModel {
         return mCurrentProperty;
     }
 
-    public void setCurrentProperty(Property currentProperty) {
+    public void setCurrentProperty(LifecycleOwner lifecycleOwner, Property currentProperty) {
         mCurrentProperty.setValue(currentProperty);
-        mCurrentPropertyPictures = mPropertyPictureRepository.fetchPictures(currentProperty.getId());
+        mPropertyPictureRepository.fetchPictures(currentProperty.getId()).observe(lifecycleOwner, mCurrentPropertyPictures::setValue);
     }
-    public void selectProperty(long id) {
+    public void selectProperty(LifecycleOwner lifecycleOwner, long id) {
         List<Property> properties = mCurrentPropertiesList.getValue();
         if (properties == null) return;
         for (Property p : properties) {
-            if (p.getId() == id ) setCurrentProperty(p);
+            if (p.getId() == id ) setCurrentProperty(lifecycleOwner, p);
         }
     }
 
