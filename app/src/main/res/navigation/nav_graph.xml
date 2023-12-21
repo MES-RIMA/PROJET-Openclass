@@ -50,6 +50,11 @@
             android:defaultValue="-1" />
     </fragment>
     <fragment
+        android:id="@+id/loanSimulatorFragment"
+        android:name="com.openclassrooms.realestatemanager.fragment.LoanSimulatorFragment"
+        android:label="@string/toolbar_loan_simulator"
+        tools:layout="@layout/fragment_loan_simulator"/>
+    <fragment
         android:id="@+id/propertyEditFragment"
         android:name="com.openclassrooms.realestatemanager.fragment.PropertyEditFragment"
         android:label="@string/toolbar_edit_property" >
