@@ -16,27 +16,31 @@ import com.openclassrooms.realestatemanager.repository.PropertyRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 public class PropertyListViewModel extends ViewModel {
 
     private PropertyRepository mPropertyRepository;
     private PropertyPictureRepository mPropertyPictureRepository;
-
     private MutableLiveData<Property> mCurrentProperty = new MutableLiveData<>();
     private LiveData<List<PropertyPicture>> mCurrentPropertyPictures;
     private MutableLiveData<List<Property>> mCurrentPropertiesList = new MutableLiveData(new ArrayList<>());
-
+    private ExecutorService mExecutorService;
     private boolean displayingSearch = false;
 
-    public PropertyListViewModel(PropertyRepository propertyRepository, PropertyPictureRepository propertyPictureRepository) {
+    public PropertyListViewModel(PropertyRepository propertyRepository, PropertyPictureRepository propertyPictureRepository, ExecutorService executorService) {
         mPropertyRepository = propertyRepository;
         mPropertyPictureRepository = propertyPictureRepository;
+        mExecutorService = executorService;
     }
 
     public LiveData<List<Property>> getCurrentPropertiesList() {
         return mCurrentPropertiesList;
     }
 
+    public ExecutorService getExecutorService() {
+        return mExecutorService;
+    }
     public void fetchAllProperties(LifecycleOwner lifecycleOwner) {
         displayingSearch = false;
         mPropertyRepository.fetchAllProperties().observe(lifecycleOwner, mCurrentPropertiesList::setValue);

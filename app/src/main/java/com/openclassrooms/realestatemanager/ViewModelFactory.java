@@ -13,10 +13,14 @@ import com.openclassrooms.realestatemanager.model.DataBase;
 import com.openclassrooms.realestatemanager.repository.PropertyPictureRepository;
 import com.openclassrooms.realestatemanager.repository.PropertyRepository;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class ViewModelFactory implements ViewModelProvider.Factory {
 
     private static volatile ViewModelFactory sFactory;
-
+    private static final int NUMBER_OF_THREADS = 4;
+    private ExecutorService mMainExecutor;
     @NonNull
     private final PropertyRepository mPropertyRepository;
     @NonNull
@@ -34,10 +38,11 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     }
 
     private ViewModelFactory(Context context) {
+        mMainExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
         DataBase database = DataBase.getDatabase(context);
 
-        mPropertyRepository = new PropertyRepository(database.propertyDao(), database.getDatabaseWriteExecutor());
-        mPropertyPictureRepository = new PropertyPictureRepository(database.propertyPictureDao(), database.getDatabaseWriteExecutor());
+        mPropertyRepository = new PropertyRepository(database.propertyDao(),  mMainExecutor);
+        mPropertyPictureRepository = new PropertyPictureRepository(database.propertyPictureDao(), mMainExecutor);
     }
 
     @SuppressWarnings("unchecked")
@@ -45,7 +50,7 @@ public class ViewModelFactory implements ViewModelProvider.Factory {
     @Override
     public <T extends ViewModel> T create(Class<T> modelClass) {
         if (modelClass.isAssignableFrom(PropertyListViewModel.class)) {
-            return (T) new PropertyListViewModel(mPropertyRepository, mPropertyPictureRepository);
+            return (T) new PropertyListViewModel(mPropertyRepository, mPropertyPictureRepository, mMainExecutor);
         }
         else if (modelClass.isAssignableFrom(PropertyAddViewModel.class)) {
             return (T) new PropertyAddViewModel(mPropertyRepository, mPropertyPictureRepository);

@@ -111,7 +111,7 @@
 
     <TextView
         android:id="@+id/poi"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_default"
         android:text="@string/property_poi"
@@ -148,7 +148,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/locationIcon"
         app:layout_constraintTop_toBottomOf="@id/locationLabel" />
+        <ImageView
+            android:id="@+id/map"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:1"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginTop="@dimen/margin_default"
+            android:contentDescription="@null"
+            app:layout_constraintStart_toStartOf="@id/guidelineHalfWidth"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location" />
 
+        <ImageView
+            android:id="@+id/noWifi"
+            android:layout_width="18dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="@dimen/margin_default"
+            android:layout_marginTop="@dimen/margin_large"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_baseline_share_location_24"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineHalfWidth"
+            app:layout_constraintTop_toBottomOf="@id/location"
+            app:tint="@color/greyLight" />
     <TextView
         android:id="@+id/descriptionLabel"
         android:layout_width="wrap_content"

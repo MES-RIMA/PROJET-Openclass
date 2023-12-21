@@ -27,10 +27,6 @@ public abstract class DataBase extends RoomDatabase {
 
     public abstract PropertyPictureDao propertyPictureDao();
 
-    public ExecutorService getDatabaseWriteExecutor() {
-        return databaseWriteExecutor;
-    }
-
     // --- INSTANCE ---
     public static DataBase getDatabase(Context context) {
         if (INSTANCE == null) {

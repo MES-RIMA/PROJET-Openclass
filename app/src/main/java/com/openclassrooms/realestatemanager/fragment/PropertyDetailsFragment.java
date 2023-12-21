@@ -2,6 +2,7 @@ package com.openclassrooms.realestatemanager.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyEditViewModel;
+import com.openclassrooms.realestatemanager.utils.MapHelper;
 import com.openclassrooms.realestatemanager.utils.Utils;
 import com.openclassrooms.realestatemanager.ViewModelFactory;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyListViewModel;
@@ -76,6 +78,18 @@ public class PropertyDetailsFragment extends Fragment {
         mBinding.description.setText(property.getDescription());
         mBinding.listedDate.setText(property.getListedDate());
         mBinding.realEstateAgent.setText(property.getRealEstateAgent());
+        setMapPictureAsynchronously(property);
+    }
+
+    public void setMapPictureAsynchronously(Property property) {
+        Handler mainHandler = new Handler(requireContext().getMainLooper());
+        mPropertyListViewModel.getExecutorService().execute(() -> {
+            String mapUrl = MapHelper.addressToStaticMapUrl(property.getFullAddress(), getContext());
+            mainHandler.post(() -> {
+                mBinding.noWifi.setVisibility(View.GONE);
+                Utils.setPicture(mapUrl, mBinding.map);
+            });
+        });
     }
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -91,7 +105,7 @@ public class PropertyDetailsFragment extends Fragment {
                 break;
             case R.id.deletePropertyButton:
                 mPropertyListViewModel.deleteCurrentProperty();
-                Navigation.findNavController(getView()).navigate(R.id.propertyListFragment);
+                Navigation.findNavController(requireView()).navigate(R.id.propertyEditFragment);
                 break;
             default:
                 Log.w("MeetingListFragment", "onOptionsItemSelected: didn't match any menu item");
@@ -104,6 +118,6 @@ public class PropertyDetailsFragment extends Fragment {
         PropertyEditViewModel editViewModel = new ViewModelProvider(requireActivity(), ViewModelFactory.getInstance(requireActivity())).get(PropertyEditViewModel.class);
         editViewModel.setCurrentPropertyState(mProperty);
         editViewModel.setCurrentPropertyPictures(mPictures);
-        Navigation.findNavController(getView()).navigate(R.id.propertyEditFragment);
+        Navigation.findNavController(requireView()).navigate(R.id.propertyEditFragment);
     }
 }
