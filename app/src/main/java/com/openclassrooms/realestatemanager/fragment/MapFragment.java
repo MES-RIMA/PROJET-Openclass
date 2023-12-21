@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -32,7 +33,6 @@ import java.util.List;
 
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
-    private int mMapZoom = 18;
     private GoogleMap mMap;
     private FragmentMapBinding mBinding;
     private PropertyListViewModel mPropertyListViewModel;
@@ -71,6 +71,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         initObservers();
         initLocateButton();
+        initMarkerInfoButton();
     }
 
     /**
@@ -181,9 +182,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             if (displayInfo) marker.showInfoWindow();
         }
     }
-
+    /**
+     * Click on locate floatingActionButton moves camera to user location
+     */
     private void initLocateButton() {
         mBinding.floatingActionButton.setOnClickListener(view -> moveCamera(mLastLocation));
+    }
+    /**
+     * Click on markers info navigate to property details
+     */
+    private void initMarkerInfoButton() {
+        mMap.setOnInfoWindowClickListener(marker -> {
+            if (marker.getTag() == null) return;
+            mPropertyListViewModel.selectProperty((long) marker.getTag());
+            Navigation.findNavController(mBinding.getRoot()).navigate(R.id.propertyDetailsFragment);
+        });
     }
 
     /**
@@ -193,6 +206,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
      */
     public void moveCamera(LatLng latLng) {
         if (latLng == null ) return;
+        int mMapZoom = 18;
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, mMapZoom));
 
     }
