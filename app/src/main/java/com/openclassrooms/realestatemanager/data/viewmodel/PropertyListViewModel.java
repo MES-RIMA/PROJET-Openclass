@@ -1,5 +1,6 @@
 package com.openclassrooms.realestatemanager.data.viewmodel;
 
+import android.app.Activity;
 import android.content.Context;
 
 import androidx.lifecycle.LifecycleOwner;
@@ -7,10 +8,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.openclassrooms.realestatemanager.MainApplication;
 import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.model.Property;
 import com.openclassrooms.realestatemanager.model.PropertyPicture;
+import com.openclassrooms.realestatemanager.repository.LocationRepository;
 import com.openclassrooms.realestatemanager.repository.PropertyPictureRepository;
 import com.openclassrooms.realestatemanager.repository.PropertyRepository;
 
@@ -24,13 +27,15 @@ public class PropertyListViewModel extends ViewModel {
     private PropertyPictureRepository mPropertyPictureRepository;
     private MutableLiveData<Property> mCurrentProperty = new MutableLiveData<>();
     private LiveData<List<PropertyPicture>> mCurrentPropertyPictures;
+    private LocationRepository mLocationRepository;
     private MutableLiveData<List<Property>> mCurrentPropertiesList = new MutableLiveData(new ArrayList<>());
     private ExecutorService mExecutorService;
     private boolean displayingSearch = false;
 
-    public PropertyListViewModel(PropertyRepository propertyRepository, PropertyPictureRepository propertyPictureRepository, ExecutorService executorService) {
+    public PropertyListViewModel(PropertyRepository propertyRepository, PropertyPictureRepository propertyPictureRepository, LocationRepository locationRepository, ExecutorService executorService) {
         mPropertyRepository = propertyRepository;
         mPropertyPictureRepository = propertyPictureRepository;
+        mLocationRepository = locationRepository;
         mExecutorService = executorService;
     }
 
@@ -88,6 +93,13 @@ public class PropertyListViewModel extends ViewModel {
         mCurrentProperty.setValue(currentProperty);
         mCurrentPropertyPictures = mPropertyPictureRepository.fetchPictures(currentProperty.getId());
     }
+    public void selectProperty(long id) {
+        List<Property> properties = mCurrentPropertiesList.getValue();
+        if (properties == null) return;
+        for (Property p : properties) {
+            if (p.getId() == id ) setCurrentProperty(p);
+        }
+    }
 
     public LiveData<List<PropertyPicture>> getCurrentPropertyPictures() {
         return mCurrentPropertyPictures;
@@ -110,4 +122,12 @@ public class PropertyListViewModel extends ViewModel {
         poiString += property.hasPoiShopping() ? context.getString(R.string.property_poi_shopping) : "";
         return poiString;
     }
+    // --- Localisation feature ---
+
+    public LiveData<LatLng> getLocationLiveData() { return  mLocationRepository.getLocationLiveData(); }
+    public boolean hasLocationPermission() { return mLocationRepository.hasLocationPermission(); }
+    public void requestLocationPermission(Activity activity) { mLocationRepository.requestLocationPermission(activity); }
+    public void refreshLocation() { mLocationRepository.refreshLocation(); }
+
+
 }

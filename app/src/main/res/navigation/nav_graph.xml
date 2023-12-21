@@ -75,4 +75,8 @@
         android:id="@+id/propertySearchFragment"
         android:name="com.openclassrooms.realestatemanager.fragment.PropertySearchFragment"
         android:label="@string/toolbar_search_property" />
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.openclassrooms.realestatemanager.fragment.MapFragment"
+        android:label="@string/toolbar_map_view" />
 </navigation>

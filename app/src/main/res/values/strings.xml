@@ -11,6 +11,7 @@
     <string name="toolbar_currency_converter">Currency converter</string>
     <string name="toolbar_edit_property">Edit property</string>
     <string name="toolbar_loan_simulator">Loan simulator</string>
+    <string name="toolbar_map_view">Map view</string>
     <!-- Property -->
     <string name="property_type">Type</string>
     <string name="property_district">District</string>

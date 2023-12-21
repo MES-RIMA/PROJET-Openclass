@@ -37,7 +37,7 @@ public class MapHelper { public static final int DEFAULT_ZOOM = 15;
      * @param context context
      * @return LatLng object matching the given address
      */
-    private static LatLng addressToFirstLatLng(String address, Context context) {
+    public static LatLng addressToFirstLatLng(String address, Context context) {
         Geocoder geocoder = new Geocoder(context);
         List<Address> addresses;
         Address location;

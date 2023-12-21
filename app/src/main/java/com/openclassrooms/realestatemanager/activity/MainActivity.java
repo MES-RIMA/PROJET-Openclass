@@ -1,9 +1,11 @@
 package com.openclassrooms.realestatemanager.activity;
 
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
@@ -12,12 +14,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.openclassrooms.realestatemanager.R;
+import com.openclassrooms.realestatemanager.ViewModelFactory;
 import com.openclassrooms.realestatemanager.databinding.ActivityMainBinding;
+import com.openclassrooms.realestatemanager.repository.LocationRepository;
 
 public class MainActivity  extends BaseActivity<ActivityMainBinding> {
 
     private NavController mNavController;
-
+    private static final int LOCATION_PERMISSION_REQUEST_CODE = 767967;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,5 +93,25 @@ public class MainActivity  extends BaseActivity<ActivityMainBinding> {
         if (mBinding.drawerLayout.isDrawerOpen(GravityCompat.START))
             mBinding.drawerLayout.closeDrawer(GravityCompat.START);
         else if (mNavController.getCurrentDestination().getId() != R.id.propertyListFragment) super.onBackPressed();
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE && grantResults.length > 0) {
+            processLocationPermissionResult(grantResults);
+        }
+    }
+
+    private void processLocationPermissionResult(@NonNull int[] grantResults) {
+        LocationRepository locationRepository = ViewModelFactory.getInstance(this).getLocationRepository();
+        for (int grantResult : grantResults) {
+            if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                locationRepository.grantLocationPermission();
+                //Any type of location suits us we can leave
+                return;
+            }
+            //We didn't find any location permission
+            locationRepository.denyLocationPermission();
+        }
     }
 }
