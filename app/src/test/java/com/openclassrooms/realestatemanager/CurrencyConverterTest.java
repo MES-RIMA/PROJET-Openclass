@@ -14,11 +14,8 @@ import java.util.Date;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
-    }
+public class CurrencyConverterTest {
+
     @Test
     public void convertDollarToEuro() {
         // 100$ =>93€
@@ -35,10 +32,5 @@ public class ExampleUnitTest {
         assertEquals(dollars, 108);
     }
 
-    @Test
-    public void getTodayDateTest() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String actualDate = Utils.getTodayDate();
-        assertEquals(dateFormat.format(new Date()), actualDate);
-    }
+
 }
