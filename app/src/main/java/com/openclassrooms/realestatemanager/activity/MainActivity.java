@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.ViewModelFactory;
 import com.openclassrooms.realestatemanager.databinding.ActivityMainBinding;
 import com.openclassrooms.realestatemanager.repository.LocationRepository;
+import com.openclassrooms.realestatemanager.utils.Utils;
 
 public class MainActivity  extends BaseActivity<ActivityMainBinding> {
 
@@ -34,6 +36,8 @@ public class MainActivity  extends BaseActivity<ActivityMainBinding> {
         super.onPostCreate(savedInstanceState);
         //Set toolbar_real_estate_list label instead of app name as toolbar title when MainActivity start
         mBinding.toolbar.setTitle(R.string.toolbar_properties_list);
+        // Warn user if there is no network
+        checkNetwork();
     }
 
     @Override
@@ -84,6 +88,10 @@ public class MainActivity  extends BaseActivity<ActivityMainBinding> {
     private void showToolbar(boolean visible) {
         int visibility = visible ? View.VISIBLE : View.GONE;
         mBinding.toolbar.setVisibility(visibility);
+    }
+    public void checkNetwork() {
+        if (!Utils.isInternetAvailable())
+            Toast.makeText(this, getString(R.string.no_network), Toast.LENGTH_LONG).show();
     }
     @SuppressWarnings("all")
     //SuppressWarnings: as graph has a start destination mNavController.getCurrentDestination() won't be null
