@@ -20,9 +20,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.ViewModelFactory;
+import com.openclassrooms.realestatemanager.data.viewmodel.PropertyEditViewModel;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyListViewModel;
 import com.openclassrooms.realestatemanager.databinding.FragmentPropertyListBinding;
 import com.openclassrooms.realestatemanager.model.Property;
+import com.openclassrooms.realestatemanager.model.PropertyPicture;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +38,7 @@ public class PropertyListFragment extends Fragment implements CommandSelectPrope
     private PropertyListAdapter mAdapter;
     private MenuItem mSearchButton;
     private MenuItem mClearSearchButton;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
@@ -52,6 +55,9 @@ public class PropertyListFragment extends Fragment implements CommandSelectPrope
         setHasOptionsMenu(true);
         return mBinding.getRoot();
     }
+
+
+
     private void initRecyclerView() {
         mRecyclerView = mBinding.recyclerView;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -59,7 +65,7 @@ public class PropertyListFragment extends Fragment implements CommandSelectPrope
 
         mAdapter = new PropertyListAdapter(mProperties, this);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
     }
 
     private void initObservers() {
@@ -70,6 +76,7 @@ public class PropertyListFragment extends Fragment implements CommandSelectPrope
             displaySearchNoResultsMessage();
         });
     }
+
     private void displaySearchNoResultsMessage() {
         if (mPropertyListViewModel.isDisplayingSearch() && mProperties.size() == 0) {
             mBinding.noResultMessage.setVisibility(View.VISIBLE);
@@ -82,11 +89,18 @@ public class PropertyListFragment extends Fragment implements CommandSelectPrope
         mPropertyListViewModel.fetchAllProperties(getViewLifecycleOwner());
         enableSearchButtons(false);
     }
+
     @Override
     public void selectProperty(Property property) {
-        mPropertyListViewModel.setCurrentProperty(getViewLifecycleOwner(), property);
-
+        if (getResources().getBoolean(R.bool.isTablet)) {
+            mPropertyListViewModel.setCurrentProperty(getViewLifecycleOwner(), property);
+        }
+        else {
+            mPropertyListViewModel.setCurrentProperty(requireActivity(), property);
+            Navigation.findNavController(requireView()).navigate(R.id.propertyDetailsFragment);
+        }
     }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.property_list_menu, menu);
@@ -100,7 +114,6 @@ public class PropertyListFragment extends Fragment implements CommandSelectPrope
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_property_button:
-                // Navigate to add new property fragment
                 Navigation.findNavController(requireView()).navigate(R.id.propertyAddFragment);
                 break;
             case R.id.list_toolbar_search_property_button:
@@ -109,11 +122,29 @@ public class PropertyListFragment extends Fragment implements CommandSelectPrope
             case R.id.list_toolbar_clear_search_property_button:
                 clearSearch();
                 break;
+            case R.id.editPropertyButton:
+                editCurrentProperty();
+                break;
+            case R.id.deletePropertyButton:
+                mPropertyListViewModel.deleteCurrentProperty();
+                break;
             default:
                 Log.w("MeetingListFragment", "onOptionsItemSelected: didn't match any menu item");
         }
         return true;
     }
+
+    private void editCurrentProperty() {
+        // To avoid requesting already loaded data we prepare edit view model now
+        Property property = mPropertyListViewModel.getCurrentProperty().getValue();
+        if (property == null) return;
+        List<PropertyPicture> pictures = mPropertyListViewModel.getCurrentPropertyPictures().getValue();
+        PropertyEditViewModel editViewModel = new ViewModelProvider(requireActivity(), ViewModelFactory.getInstance(requireActivity())).get(PropertyEditViewModel.class);
+        editViewModel.setCurrentPropertyState(property);
+        editViewModel.setCurrentPropertyPictures(pictures);
+        Navigation.findNavController(requireView()).navigate(R.id.propertyEditFragment);
+    }
+
     public void enableSearchButtons(boolean displayingSearch) {
         mSearchButton.setVisible(!displayingSearch);
         mClearSearchButton.setVisible(displayingSearch);

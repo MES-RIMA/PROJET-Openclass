@@ -25,11 +25,14 @@ public class PropertyListViewModel extends ViewModel {
 
     private PropertyRepository mPropertyRepository;
     private PropertyPictureRepository mPropertyPictureRepository;
+    private LocationRepository mLocationRepository;
+    private ExecutorService mExecutorService;
+
     private MutableLiveData<Property> mCurrentProperty = new MutableLiveData<>();
     private MutableLiveData<List<PropertyPicture>> mCurrentPropertyPictures = new MutableLiveData<>();
-    private LocationRepository mLocationRepository;
+
     private MutableLiveData<List<Property>> mCurrentPropertiesList = new MutableLiveData<>(new ArrayList<>());
-    private ExecutorService mExecutorService;
+
     private boolean displayingSearch = false;
 
     public PropertyListViewModel(PropertyRepository propertyRepository, PropertyPictureRepository propertyPictureRepository, LocationRepository locationRepository, ExecutorService executorService) {
@@ -46,6 +49,7 @@ public class PropertyListViewModel extends ViewModel {
     public ExecutorService getExecutorService() {
         return mExecutorService;
     }
+
     public void fetchAllProperties(LifecycleOwner lifecycleOwner) {
         displayingSearch = false;
         mPropertyRepository.fetchAllProperties().observe(lifecycleOwner, mCurrentPropertiesList::setValue);
@@ -85,6 +89,7 @@ public class PropertyListViewModel extends ViewModel {
     public boolean isDisplayingSearch() {
         return displayingSearch;
     }
+
     public LiveData<Property> getCurrentProperty() {
         return mCurrentProperty;
     }
@@ -93,6 +98,7 @@ public class PropertyListViewModel extends ViewModel {
         mCurrentProperty.setValue(currentProperty);
         mPropertyPictureRepository.fetchPictures(currentProperty.getId()).observe(lifecycleOwner, mCurrentPropertyPictures::setValue);
     }
+
     public void selectProperty(LifecycleOwner lifecycleOwner, long id) {
         List<Property> properties = mCurrentPropertiesList.getValue();
         if (properties == null) return;
@@ -104,6 +110,12 @@ public class PropertyListViewModel extends ViewModel {
     public LiveData<List<PropertyPicture>> getCurrentPropertyPictures() {
         return mCurrentPropertyPictures;
     }
+
+    public void refreshLocation() {
+        mLocationRepository.refreshLocation();
+    }
+
+
     public void deleteCurrentProperty() {
         Property currentProperty = mCurrentProperty.getValue();
         List<PropertyPicture> pictures = mCurrentPropertyPictures.getValue();
@@ -122,12 +134,12 @@ public class PropertyListViewModel extends ViewModel {
         poiString += property.hasPoiShopping() ? context.getString(R.string.property_poi_shopping) : "";
         return poiString;
     }
+
     // --- Localisation feature ---
 
     public LiveData<LatLng> getLocationLiveData() { return  mLocationRepository.getLocationLiveData(); }
     public boolean hasLocationPermission() { return mLocationRepository.hasLocationPermission(); }
     public void requestLocationPermission(Activity activity) { mLocationRepository.requestLocationPermission(activity); }
-    public void refreshLocation() { mLocationRepository.refreshLocation(); }
-
+    //public void refreshLocation() { mLocationRepository.refreshLocation(); }
 
 }

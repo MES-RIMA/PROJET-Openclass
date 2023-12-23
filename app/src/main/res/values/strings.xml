@@ -46,6 +46,7 @@
     <string name="property_poi_parking">Parking</string>
     <string name="property_no_match">No property match your search</string>
     <string name="property_search_no_result">Your search criteria returned no results</string>
+    <string name="property_no_selection">Select a property</string>
     <!-- Property type -->
     <string-array name="property_types" >
         <item>Apartment</item>

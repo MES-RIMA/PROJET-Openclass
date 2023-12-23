@@ -21,18 +21,17 @@ import java.util.List;
 
 public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapter.ViewHolder>{
 
-    private Context mContext;
     private final List<Property> mProperties;
     private CommandSelectProperty mCommandSelectProperty;
+    private long mSelectedPropertyId = -1;
 
-    public PropertyListAdapter(List<Property> properties, CommandSelectProperty commandSelectProperty)  {
+    public PropertyListAdapter(List<Property> properties, CommandSelectProperty commandSelectProperty) {
         mProperties = properties;
-        mCommandSelectProperty= commandSelectProperty;
+        mCommandSelectProperty = commandSelectProperty;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private FragmentPropertyListItemBinding mBinding;
-        private CommandSelectProperty mSelectPropertyCommand;
 
         public ViewHolder(FragmentPropertyListItemBinding binding) {
             super(binding.getRoot());
@@ -50,13 +49,15 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
     @Override
     public void onBindViewHolder(@NonNull PropertyListAdapter.ViewHolder holder, int position) {
         Property property = mProperties.get(position);
+
         holder.mBinding.type.setText(property.getType());
         holder.mBinding.district.setText(property.getDistrict());
         holder.mBinding.price.setText(Utils.dollarString(property.getPrice()));
+
         if (property.getMainPictureId() != -1) Utils.setPicture(property.getMainPictureUri(), holder.mBinding.picture);
 
-        renderItemColors(holder.itemView, holder.mBinding.price, false);
-        holder.itemView.setOnClickListener(view -> selectItem(view, holder.mBinding.price, property));
+        renderItemColors(holder.itemView, holder.mBinding.price, mSelectedPropertyId == property.getId());
+        holder.itemView.setOnClickListener(view -> selectItem(property));
     }
 
     @Override
@@ -64,10 +65,10 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
         return mProperties.size();
     }
 
-    private void selectItem(View view, TextView priceTextView, Property property) {
-        renderItemColors(view, priceTextView, true);
+    private void selectItem(Property property) {
         mCommandSelectProperty.selectProperty(property);
-        Navigation.findNavController(view).navigate(R.id.propertyDetailsFragment);
+        mSelectedPropertyId = property.getId();
+        notifyDataSetChanged();
     }
 
     private void renderItemColors(View view, TextView priceTextView, boolean selected) {

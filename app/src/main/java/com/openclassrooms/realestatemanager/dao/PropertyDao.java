@@ -1,5 +1,7 @@
 package com.openclassrooms.realestatemanager.dao;
 
+import android.database.Cursor;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -16,6 +18,8 @@ public interface PropertyDao {
     LiveData<List<Property>> fetchAllProperties();
     @Query("SELECT * FROM Property WHERE property_id = :propertyId LIMIT 1")
     LiveData<Property> fetchProperty(long propertyId);
+    @Query("SELECT * FROM Property WHERE property_id = :propertyId")
+    Cursor getPropertyWithCursor(long propertyId);
 
     @Query("UPDATE Property SET mainPictureId = :pictureId, mainPictureUri = :uri WHERE property_id =:propertyId")
 

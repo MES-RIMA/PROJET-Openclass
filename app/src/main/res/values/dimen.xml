@@ -15,11 +15,13 @@
     <dimen name="icon_small">18dp</dimen>
     <dimen name="icon_large">64dp</dimen>
     <dimen name="elevation_default">4dp</dimen>
+    <dimen name="static_map_max_size">200dp</dimen>
     <!-- Drawer -->
     <dimen name="drawer_header_height">224dp</dimen>
     <!-- Property list -->
     <dimen name="list_thumbnail_size">100dp</dimen>
     <!-- Property details -->
     <dimen name="property_picture_thumbnail_size">150dp</dimen>
+    <dimen name="property_picture_thumbnail_size_large">300dp</dimen>
 
 </resources>

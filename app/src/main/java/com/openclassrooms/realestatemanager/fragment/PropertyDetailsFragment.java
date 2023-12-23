@@ -35,17 +35,22 @@ public class PropertyDetailsFragment extends Fragment {
 
     private FragmentPropertyDetailsBinding mBinding;
     private RecyclerView mRecyclerView;
+    private PropertyDetailsAdapter mAdapter;
     private PropertyListViewModel mPropertyListViewModel;
     private List<PropertyPicture> mPictures = new ArrayList<>();
     private Property mProperty;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
         mBinding = FragmentPropertyDetailsBinding.inflate(inflater, container, false);
         mPropertyListViewModel = new ViewModelProvider(requireActivity(), ViewModelFactory.getInstance(requireActivity())).get(PropertyListViewModel.class);
+
         initPicturesRecyclerView();
         initObservers();
+        displayDetails(false);
+
         setHasOptionsMenu(true);
         return mBinding.getRoot();
     }
@@ -55,32 +60,39 @@ public class PropertyDetailsFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        PropertyDetailsAdapter mAdapter = new PropertyDetailsAdapter(mPictures);
+        mAdapter = new PropertyDetailsAdapter(mPictures);
         mRecyclerView.setAdapter(mAdapter);
     }
 
     private void initObservers() {
-        mPropertyListViewModel.getCurrentProperty().observe(requireActivity(), this::populateDetails);
+        mPropertyListViewModel.getCurrentProperty().observe(getViewLifecycleOwner(), this::populateDetails);
 
-        mPropertyListViewModel.getCurrentPropertyPictures().observe(requireActivity(), pictures -> {
-            mPictures.clear();
-            mPictures.addAll(pictures);
-            if (mRecyclerView.getAdapter() != null) mRecyclerView.getAdapter().notifyDataSetChanged();
-        });
+        mPropertyListViewModel.getCurrentPropertyPictures().observe(getViewLifecycleOwner(), this::populatePictures);
+    }
+
+    private void populatePictures(List<PropertyPicture> pictures) {
+        mPictures.clear();
+        mPictures.addAll(pictures);
+        mAdapter.notifyDataSetChanged();
     }
 
     private void populateDetails(Property property) {
         mProperty = property;
+
         mBinding.surface.setText(Utils.surfaceString(property.getSurface()));
-        mBinding.numberOfRooms.setText(Utils.integerString(property.getNumberOfRooms()));;
+        mBinding.numberOfRooms.setText(Utils.integerString(property.getNumberOfRooms()));
         mBinding.poi.setText(mPropertyListViewModel.generatePoiString(property));
         mBinding.location.setText(property.getFullAddress());
         mBinding.description.setText(property.getDescription());
         mBinding.listedDate.setText(property.getListedDate());
         mBinding.realEstateAgent.setText(property.getRealEstateAgent());
+
         initMapButton();
         setMapPictureAsynchronously(property);
+
+        displayDetails(true);
     }
+
     private void initMapButton() {
         mBinding.map.setOnClickListener(view ->
                 Navigation.findNavController(view).navigate(R.id.mapFragment));
@@ -96,6 +108,18 @@ public class PropertyDetailsFragment extends Fragment {
             });
         });
     }
+
+    private void displayDetails(boolean hasSelection) {
+        if (hasSelection) {
+            mBinding.detailsContainer.setVisibility(View.VISIBLE);
+            mBinding.noPropertySelected.setVisibility(View.GONE);
+        }
+        else {
+            mBinding.detailsContainer.setVisibility(View.GONE);
+            mBinding.noPropertySelected.setVisibility(View.VISIBLE);
+        }
+    }
+
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.property_details_menu, menu);
@@ -110,7 +134,7 @@ public class PropertyDetailsFragment extends Fragment {
                 break;
             case R.id.deletePropertyButton:
                 mPropertyListViewModel.deleteCurrentProperty();
-                Navigation.findNavController(requireView()).navigate(R.id.propertyEditFragment);
+                Navigation.findNavController(requireView()).navigate(R.id.propertyListFragment);
                 break;
             default:
                 Log.w("MeetingListFragment", "onOptionsItemSelected: didn't match any menu item");

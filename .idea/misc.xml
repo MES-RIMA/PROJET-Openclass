@@ -4,11 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.104" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/ic_baseline_gps_fixed_24.xml" value="0.104" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/ic_baseline_photo_24.xml" value="0.106" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/ic_baseline_share_location_24.xml" value="0.104" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/ic_baseline_signal_wifi_connected_no_internet_4_24.xml" value="0.104" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/ic_baseline_swap_horizontal_circle_24.xml" value="0.106" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/no_photo.xml" value="0.106" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/drawable/setting.xml" value="0.106" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout-sw600dp/fragment_property_details.xml" value="0.133984375" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout-sw600dp/fragment_property_editor.xml" value="0.133984375" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout-sw600dp/fragment_property_list.xml" value="0.133984375" />
+        <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout-sw600dp/property_picture_item.xml" value="0.133984375" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/activity_main_drawer_header.xml" value="0.1" />
         <entry key="..\:/Users/randa/openclassrooms.9/RealEstateManager_RAN/RealEstateManager/app/src/main/res/layout/activity_second.xml" value="0.1" />
