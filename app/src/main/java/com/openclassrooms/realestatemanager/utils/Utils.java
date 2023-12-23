@@ -150,7 +150,7 @@ public class Utils {
         Glide.with(MainApplication.getContext())
                 .load(uri)
                 //.apply(new RequestOptions().centerCrop())
-                .error(R.drawable.ic_baseline_photo_camera_24)
+                .error(R.drawable.map)
                 .into(imageView);
     }
 }
