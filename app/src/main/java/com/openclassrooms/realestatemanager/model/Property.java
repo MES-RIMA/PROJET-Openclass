@@ -24,7 +24,7 @@ public class Property {
     private String street;
     private String postalCode;
     private String city;
-    //TODO: Points of interest, school, shop, parcs...
+    // Points of interest, school, shop, parcs...
     private boolean poiSwimmingPool;
     private boolean poiSchool;
     private boolean poiShopping;

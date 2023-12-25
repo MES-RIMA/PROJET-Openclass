@@ -53,7 +53,9 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
         holder.mBinding.type.setText(property.getType());
         holder.mBinding.district.setText(property.getDistrict());
         holder.mBinding.price.setText(Utils.dollarString(property.getPrice()));
-
+        if(!property.isAvailable()) {
+            holder.mBinding.photoSold.setImageResource(R.drawable.sold);
+        }
         if (property.getMainPictureId() != -1) Utils.setPicture(property.getMainPictureUri(), holder.mBinding.picture);
 
         renderItemColors(holder.itemView, holder.mBinding.price, mSelectedPropertyId == property.getId());

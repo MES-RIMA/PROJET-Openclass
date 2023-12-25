@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutorService;
 public class PropertyPictureRepository {
     private final PropertyPictureDao mPropertyPictureDao;
     private final ExecutorService mExecutor;
+
     public PropertyPictureRepository(PropertyPictureDao propertyPictureDao, ExecutorService executor) {
         mPropertyPictureDao = propertyPictureDao;
         mExecutor = executor;
