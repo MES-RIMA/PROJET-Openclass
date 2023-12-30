@@ -1,19 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/margin_medium"
+    android:background="@color/colorAccentLight">
 
     <!-- Background-->
+
     <ImageView
-        android:id="@+id/background_image"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/drawer_header_height"
+        android:id="@+id/logo_icon"
+        android:layout_width="330dp"
+        android:layout_height="164dp"
+        android:layout_marginTop="@dimen/margin_default"
         android:contentDescription="@null"
         android:scaleType="centerCrop"
-        android:src="@null"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toTopOf="@+id/logo_label"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/logo_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
