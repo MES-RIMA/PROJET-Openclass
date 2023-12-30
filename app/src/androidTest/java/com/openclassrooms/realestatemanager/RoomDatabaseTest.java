@@ -12,9 +12,9 @@ import androidx.test.core.app.ApplicationProvider;
 
 import com.openclassrooms.realestatemanager.dao.PropertyDao;
 import com.openclassrooms.realestatemanager.dao.PropertyPictureDao;
-import com.openclassrooms.realestatemanager.model.DataBase;
-import com.openclassrooms.realestatemanager.model.Property;
-import com.openclassrooms.realestatemanager.model.PropertyPicture;
+import com.openclassrooms.realestatemanager.data.model.DataBase;
+import com.openclassrooms.realestatemanager.data.model.Property;
+import com.openclassrooms.realestatemanager.data.model.PropertyPicture;
 
 import junit.framework.TestCase;
 
@@ -32,8 +32,8 @@ public class RoomDatabaseTest {
     private DataBase db;
     private PropertyDao mPropertyDao;
     private PropertyPictureDao mPropertyPictureDao;
-    private final long HAPPYRANDA_PROPERTY_ID = 1;
-    private final Property HAPPYRANDA = new Property(
+    private final long HAPPY_RANDA_PROPERTY_ID = 1;
+    private final Property HAPPY_RANDA_PROPERTY = new Property(
             "house",
             "facade",
             1800,
@@ -55,8 +55,8 @@ public class RoomDatabaseTest {
             null,
             "EMMA");
 
-    private final PropertyPicture HAPPYRANDA_1 =new PropertyPicture(HAPPYRANDA_PROPERTY_ID,"picture_1","");
-    private final PropertyPicture HAPPYRANDA_2 =new PropertyPicture(HAPPYRANDA_PROPERTY_ID,"picture_2","");
+    private final PropertyPicture HAPPY_RANDA_Picture_1 =new PropertyPicture(HAPPY_RANDA_PROPERTY_ID,"picture_1","");
+    private final PropertyPicture HAPPY_RANDA_Picture_2 =new PropertyPicture(HAPPY_RANDA_PROPERTY_ID,"picture_2","");
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
@@ -79,11 +79,11 @@ public class RoomDatabaseTest {
 
     @Test
     public void insertAndGetProperty() throws InterruptedException {
-        // insert a DUMMY_PROPERTY
-        mPropertyDao.insert(HAPPYRANDA);
+        // insert a HAPPY_RANDA_PROPERTY
+        mPropertyDao.insert(HAPPY_RANDA_PROPERTY);
         // Assert it's in database
-        Property property = LiveDataTestUtil.getValue(mPropertyDao.fetchProperty(HAPPYRANDA_PROPERTY_ID));
-        assertTrue(property.getDescription().equals(HAPPYRANDA.getDescription()) && property.getId() == HAPPYRANDA_PROPERTY_ID);
+        Property property = LiveDataTestUtil.getValue(mPropertyDao.fetchProperty(HAPPY_RANDA_PROPERTY_ID));
+        assertTrue(property.getDescription().equals(HAPPY_RANDA_PROPERTY.getDescription()) && property.getId() == HAPPY_RANDA_PROPERTY_ID);
     }
 
     @Test
@@ -95,10 +95,10 @@ public class RoomDatabaseTest {
     @Test
     public void insertAndUpdateProperty() throws InterruptedException {
         // Insert property
-        mPropertyDao.insert(HAPPYRANDA);
+        mPropertyDao.insert(HAPPY_RANDA_PROPERTY);
         // Update price
         int expectedPrice = 34;
-        Property p = LiveDataTestUtil.getValue(mPropertyDao.fetchProperty(HAPPYRANDA_PROPERTY_ID));
+        Property p = LiveDataTestUtil.getValue(mPropertyDao.fetchProperty(HAPPY_RANDA_PROPERTY_ID));
         p.setPrice(expectedPrice);
         mPropertyDao.updateProperty(
                 p.getId(),
@@ -124,7 +124,7 @@ public class RoomDatabaseTest {
                 p.getRealEstateAgent());
 
         //verify it's correctly updated
-        Property property = LiveDataTestUtil.getValue(mPropertyDao.fetchProperty(HAPPYRANDA_PROPERTY_ID));
+        Property property = LiveDataTestUtil.getValue(mPropertyDao.fetchProperty(HAPPY_RANDA_PROPERTY_ID));
         assertEquals(expectedPrice, property.getPrice());
     }
 
@@ -132,20 +132,20 @@ public class RoomDatabaseTest {
     @Test
     public void insertAndGetPictures() throws InterruptedException {
         // insert property and picture 1
-        String expectedDescription = HAPPYRANDA_1.getDescription();
-        mPropertyDao.insert(HAPPYRANDA);
-        mPropertyPictureDao.insert(HAPPYRANDA_1);
-        mPropertyPictureDao.insert(HAPPYRANDA_2);
+        String expectedDescription = HAPPY_RANDA_Picture_1.getDescription();
+        mPropertyDao.insert(HAPPY_RANDA_PROPERTY);
+        mPropertyPictureDao.insert(HAPPY_RANDA_Picture_1);
+        mPropertyPictureDao.insert(HAPPY_RANDA_Picture_2);
 
         // verify pictures are correctly inserted
-        List<PropertyPicture> pictures = LiveDataTestUtil.getValue(mPropertyPictureDao.fetchPictures(HAPPYRANDA_PROPERTY_ID));
+        List<PropertyPicture> pictures = LiveDataTestUtil.getValue(mPropertyPictureDao.fetchPictures(HAPPY_RANDA_PROPERTY_ID));
         assertEquals(2, pictures.size());
         assertEquals(expectedDescription, pictures.get(0).getDescription());
     }
 
     @Test
     public void getPicturesWhenNoItemInserted() throws InterruptedException {
-        List<PropertyPicture> pictures = LiveDataTestUtil.getValue(mPropertyPictureDao.fetchPictures(HAPPYRANDA_PROPERTY_ID));
+        List<PropertyPicture> pictures = LiveDataTestUtil.getValue(mPropertyPictureDao.fetchPictures(HAPPY_RANDA_PROPERTY_ID));
         TestCase.assertTrue(pictures.isEmpty());
     }
 }

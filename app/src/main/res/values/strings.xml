@@ -41,6 +41,7 @@
     <string name="property_successfully_updated">Property has been successfully updated</string>
     <string name="property_poi">Points of interest</string>
     <string name="property_poi_swimming_pool">Swimming pool</string>
+    <string name="available">Swimming pool</string>
     <string name="property_poi_school">Near schools</string>
     <string name="property_poi_shopping">Near shopping</string>
     <string name="property_poi_parking">Parking</string>

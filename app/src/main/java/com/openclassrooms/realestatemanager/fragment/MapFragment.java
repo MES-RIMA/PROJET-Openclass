@@ -26,7 +26,7 @@ import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.ViewModelFactory;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyListViewModel;
 import com.openclassrooms.realestatemanager.databinding.FragmentMapBinding;
-import com.openclassrooms.realestatemanager.model.Property;
+import com.openclassrooms.realestatemanager.data.model.Property;
 import com.openclassrooms.realestatemanager.utils.MapHelper;
 
 import java.util.List;

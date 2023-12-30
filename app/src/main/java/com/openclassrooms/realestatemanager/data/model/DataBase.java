@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.model;
+package com.openclassrooms.realestatemanager.data.model;
 
 import android.content.Context;
 
@@ -8,7 +8,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.openclassrooms.realestatemanager.utils.Utils;
 import com.openclassrooms.realestatemanager.dao.PropertyDao;
 import com.openclassrooms.realestatemanager.dao.PropertyPictureDao;
 

@@ -20,8 +20,8 @@ import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.ViewModelFactory;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyEditViewModel;
 import com.openclassrooms.realestatemanager.databinding.FragmentPropertyEditorBinding;
-import com.openclassrooms.realestatemanager.model.Property;
-import com.openclassrooms.realestatemanager.model.PropertyPicture;
+import com.openclassrooms.realestatemanager.data.model.Property;
+import com.openclassrooms.realestatemanager.data.model.PropertyPicture;
 import com.openclassrooms.realestatemanager.utils.DatePicker;
 import com.openclassrooms.realestatemanager.utils.Utils;
 
@@ -55,14 +55,14 @@ public class PropertyEditFragment extends Fragment implements CommandPictureMana
     }
 
     private void initObservers() {
-        mPropertyEditViewModel.getCurrentPropertyState().observe(requireActivity(), property -> {
+        mPropertyEditViewModel.getCurrentPropertyState().observe(getViewLifecycleOwner(), property -> {
             updateInputs(property);
             mPropertyEditAdapter.notifyDataSetChanged();
         });
 
-        mPropertyEditViewModel.getMainPictureRowIndex().observe(requireActivity(), index -> mPropertyEditAdapter.notifyDataSetChanged());
+        mPropertyEditViewModel.getMainPictureRowIndex().observe(getViewLifecycleOwner(), index -> mPropertyEditAdapter.notifyDataSetChanged());
 
-        mPropertyEditViewModel.getCurrentPropertyPictures().observe(requireActivity(), pictures -> {
+        mPropertyEditViewModel.getCurrentPropertyPictures().observe(getViewLifecycleOwner(), pictures -> {
             mPictures.clear();
             mPictures.addAll(pictures);
             mPropertyEditAdapter.notifyDataSetChanged();

@@ -7,7 +7,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.openclassrooms.realestatemanager.model.Property;
+import com.openclassrooms.realestatemanager.data.model.Property;
 
 import java.util.List;
 

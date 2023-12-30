@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,8 +20,8 @@ import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.ViewModelFactory;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyAddViewModel;
 import com.openclassrooms.realestatemanager.databinding.FragmentPropertyEditorBinding;
-import com.openclassrooms.realestatemanager.model.Property;
-import com.openclassrooms.realestatemanager.model.PropertyPicture;
+import com.openclassrooms.realestatemanager.data.model.Property;
+import com.openclassrooms.realestatemanager.data.model.PropertyPicture;
 import com.openclassrooms.realestatemanager.utils.DatePicker;
 import com.openclassrooms.realestatemanager.utils.Utils;
 
@@ -56,14 +55,14 @@ public class PropertyAddFragment extends Fragment implements CommandPictureManag
     }
 
     private void initObservers() {
-        mPropertyAddViewModel.getCurrentProperty().observe(requireActivity(), property -> {
+        mPropertyAddViewModel.getCurrentProperty().observe(getViewLifecycleOwner(), property -> {
             updateInputs(property);
             mPropertyAddAdapter.notifyDataSetChanged();
         });
 
-        mPropertyAddViewModel.getMainPictureRowIndex().observe(requireActivity(), index -> mPropertyAddAdapter.notifyDataSetChanged());
+        mPropertyAddViewModel.getMainPictureRowIndex().observe(getViewLifecycleOwner(), index -> mPropertyAddAdapter.notifyDataSetChanged());
 
-        mPropertyAddViewModel.getCurrentPropertyPictures().observe(requireActivity(), pictures -> {
+        mPropertyAddViewModel.getCurrentPropertyPictures().observe(getViewLifecycleOwner(), pictures -> {
             mPictures.clear();
             mPictures.addAll(pictures);
             mPropertyAddAdapter.notifyDataSetChanged();

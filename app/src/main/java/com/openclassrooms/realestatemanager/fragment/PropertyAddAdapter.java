@@ -4,7 +4,7 @@ import android.view.View;
 
 import androidx.navigation.Navigation;
 
-import com.openclassrooms.realestatemanager.model.PropertyPicture;
+import com.openclassrooms.realestatemanager.data.model.PropertyPicture;
 
 import java.util.List;
 

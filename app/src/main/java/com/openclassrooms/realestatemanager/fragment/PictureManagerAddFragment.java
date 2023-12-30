@@ -14,7 +14,7 @@ import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.ViewModelFactory;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyAddViewModel;
 import com.openclassrooms.realestatemanager.databinding.FragmentPictureManagerBinding;
-import com.openclassrooms.realestatemanager.model.PropertyPicture;
+import com.openclassrooms.realestatemanager.data.model.PropertyPicture;
 import com.openclassrooms.realestatemanager.utils.CameraHelper;
 import com.openclassrooms.realestatemanager.utils.MediaStoreHelper;
 
@@ -46,7 +46,7 @@ public class PictureManagerAddFragment extends Fragment implements CommandPictur
         return mBinding.getRoot();
     }
     private void initObservers() {
-        mPropertyAddViewModel.getCurrentPropertyPictures().observe(requireActivity(), pictures -> {
+        mPropertyAddViewModel.getCurrentPropertyPictures().observe(getViewLifecycleOwner(), pictures -> {
             mPictures.clear();
             mPictures.addAll(pictures);
             mAdapter.notifyDataSetChanged();
@@ -57,7 +57,7 @@ public class PictureManagerAddFragment extends Fragment implements CommandPictur
             mBinding.viewPager.setCurrentItem(mPictures.size() - 1);
         });
 
-        mPropertyAddViewModel.getMainPictureRowIndex().observe(requireActivity(), index -> mAdapter.notifyDataSetChanged());
+        mPropertyAddViewModel.getMainPictureRowIndex().observe(getViewLifecycleOwner(), index -> mAdapter.notifyDataSetChanged());
     }
 
     private void initViewPager() {

@@ -11,8 +11,8 @@ import androidx.lifecycle.ViewModel;
 import com.google.android.gms.maps.model.LatLng;
 import com.openclassrooms.realestatemanager.MainApplication;
 import com.openclassrooms.realestatemanager.R;
-import com.openclassrooms.realestatemanager.model.Property;
-import com.openclassrooms.realestatemanager.model.PropertyPicture;
+import com.openclassrooms.realestatemanager.data.model.Property;
+import com.openclassrooms.realestatemanager.data.model.PropertyPicture;
 import com.openclassrooms.realestatemanager.repository.LocationRepository;
 import com.openclassrooms.realestatemanager.repository.PropertyPictureRepository;
 import com.openclassrooms.realestatemanager.repository.PropertyRepository;
@@ -67,7 +67,8 @@ public class PropertyListViewModel extends ViewModel {
                                  boolean hasSwimmingPool,
                                  boolean hasSchool,
                                  boolean hasShopping,
-                                 boolean hasParking
+                                 boolean hasParking,
+                                 boolean available
     ) {
         displayingSearch = true;
         mPropertyRepository.searchProperty(
@@ -82,7 +83,8 @@ public class PropertyListViewModel extends ViewModel {
                 hasSwimmingPool,
                 hasSchool,
                 hasShopping,
-                hasParking
+                hasParking,
+                available
         ).observe(lifecycleOwner, mCurrentPropertiesList::setValue);
     }
 

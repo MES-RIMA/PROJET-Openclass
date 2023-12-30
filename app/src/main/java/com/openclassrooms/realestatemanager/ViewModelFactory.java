@@ -10,7 +10,7 @@ import com.google.android.gms.location.LocationServices;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyAddViewModel;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyEditViewModel;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyListViewModel;
-import com.openclassrooms.realestatemanager.model.DataBase;
+import com.openclassrooms.realestatemanager.data.model.DataBase;
 import com.openclassrooms.realestatemanager.repository.LocationRepository;
 import com.openclassrooms.realestatemanager.repository.PropertyPictureRepository;
 import com.openclassrooms.realestatemanager.repository.PropertyRepository;

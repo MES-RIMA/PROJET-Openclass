@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.openclassrooms.realestatemanager.MainApplication;
 import com.openclassrooms.realestatemanager.R;
 import com.openclassrooms.realestatemanager.databinding.PropertyPictureItemBinding;
-import com.openclassrooms.realestatemanager.model.PropertyPicture;
+import com.openclassrooms.realestatemanager.data.model.PropertyPicture;
 import com.openclassrooms.realestatemanager.utils.Utils;
 
 import java.util.List;

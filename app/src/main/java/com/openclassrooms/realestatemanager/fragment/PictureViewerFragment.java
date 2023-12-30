@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.openclassrooms.realestatemanager.ViewModelFactory;
 import com.openclassrooms.realestatemanager.data.viewmodel.PropertyListViewModel;
 import com.openclassrooms.realestatemanager.databinding.FragmentPictureViewerBinding;
-import com.openclassrooms.realestatemanager.model.PropertyPicture;
+import com.openclassrooms.realestatemanager.data.model.PropertyPicture;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class PictureViewerFragment extends Fragment {
     }
 
     private void initObservers() {
-        mPropertyListViewModel.getCurrentPropertyPictures().observe(requireActivity(), pictures -> {
+        mPropertyListViewModel.getCurrentPropertyPictures().observe(getViewLifecycleOwner(), pictures -> {
             mPictures.clear();
             mPictures.addAll(pictures);
             mAdapter.notifyDataSetChanged();

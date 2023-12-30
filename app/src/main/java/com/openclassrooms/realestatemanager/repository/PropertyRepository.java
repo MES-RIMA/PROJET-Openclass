@@ -3,7 +3,7 @@ package com.openclassrooms.realestatemanager.repository;
 import androidx.lifecycle.LiveData;
 
 import com.openclassrooms.realestatemanager.dao.PropertyDao;
-import com.openclassrooms.realestatemanager.model.Property;
+import com.openclassrooms.realestatemanager.data.model.Property;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -68,7 +68,7 @@ public class PropertyRepository {
                                                    boolean hasSwimmingPool,
                                                    boolean hasSchool,
                                                    boolean hasShopping,
-                                                   boolean hasParking) {
+                                                   boolean hasParking, boolean available) {
         return mPropertyDao.searchProperty(type,
                 district,
                 minPrice,

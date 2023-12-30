@@ -30,7 +30,7 @@ public class PropertySearchFragment extends Fragment {
     private Integer surfaceMax;
     private Integer roomsMin;
     private Integer roomsMax;
-
+    private boolean available;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
@@ -53,7 +53,6 @@ public class PropertySearchFragment extends Fragment {
         mPropertyTypeDropMenuAdapter = new ArrayAdapter<>(requireContext(), R.layout.support_simple_spinner_dropdown_item, types);
         mBinding.type.setAdapter(mPropertyTypeDropMenuAdapter);
     }
-
     public void searchProperty() {
         type = mBinding.type.getText().toString().isEmpty() ? null : mBinding.type.getText().toString();
         district = mBinding.district.getText().toString().isEmpty() ? null : mBinding.district.getText().toString();
@@ -63,7 +62,6 @@ public class PropertySearchFragment extends Fragment {
         surfaceMax = mBinding.surfaceMax.getText().toString().isEmpty() ? null : Integer.parseInt(mBinding.surfaceMax.getText().toString());
         roomsMin = mBinding.numberOfRoomsMin.getText().toString().isEmpty() ? null : Integer.parseInt(mBinding.numberOfRoomsMin.getText().toString());
         roomsMax = mBinding.numberOfRoomsMax.getText().toString().isEmpty() ? null : Integer.parseInt(mBinding.numberOfRoomsMax.getText().toString());
-
         // We set MainActivity as lifecycle owner, because PropertySearchFragment will be deleted before search result
         mPropertyListViewModel.searchProperties(requireActivity(),
                 type,
@@ -74,6 +72,7 @@ public class PropertySearchFragment extends Fragment {
                 surfaceMax,
                 roomsMin,
                 roomsMax,
+                available,
                 mBinding.poiSwimmingPool.isChecked(),
                 mBinding.poiSchool.isChecked(),
                 mBinding.poiShopping.isChecked(),

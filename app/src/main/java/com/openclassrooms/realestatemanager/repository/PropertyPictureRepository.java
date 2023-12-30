@@ -3,7 +3,7 @@ package com.openclassrooms.realestatemanager.repository;
 import androidx.lifecycle.LiveData;
 
 import com.openclassrooms.realestatemanager.dao.PropertyPictureDao;
-import com.openclassrooms.realestatemanager.model.PropertyPicture;
+import com.openclassrooms.realestatemanager.data.model.PropertyPicture;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
