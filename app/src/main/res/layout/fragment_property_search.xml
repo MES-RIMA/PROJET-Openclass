@@ -284,9 +284,10 @@
 
         <CheckBox
             android:id="@+id/poi_parking"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/margin_medium"
-            android:layout_marginTop="@dimen/margin_default"
+            android:layout_width="85dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="12dp"
             android:text="@string/property_poi_parking"
             android:textColor="@color/grey"
             app:layout_constraintStart_toStartOf="parent"
@@ -301,16 +302,19 @@
             android:textColor="@color/grey"
             app:layout_constraintStart_toStartOf="@id/poi_school"
             app:layout_constraintTop_toBottomOf="@id/poi_swimming_pool" />
+
+
         <CheckBox
             android:id="@+id/available"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/margin_medium"
-            android:layout_marginStart="48dp"
-            android:text="@string/available"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/property_available"
             android:textColor="@color/grey"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="551dp"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@id/poi_shopping"
+            tools:ignore="NotSibling" />
 
         <Button
             android:id="@+id/button"

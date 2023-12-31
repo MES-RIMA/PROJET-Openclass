@@ -1,4 +1,4 @@
-package com.openclassrooms.realestatemanager.utils;
+package com.openclassrooms.realestatemanager.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
@@ -13,11 +13,9 @@ import com.openclassrooms.realestatemanager.data.model.DataBase;
 import com.openclassrooms.realestatemanager.data.model.Property;
 
 public class EstateContentProvider extends ContentProvider {
-
-    public static final String AUTHORITY = "com.openclassrooms.realestatemanager.utils";
+    public static final String AUTHORITY = "com.openclassrooms.realestatemanager.provider";
     public static final String TABLE_NAME = Property.class.getSimpleName();
     public static final Uri URI_PROPERTY = Uri.parse("content://" + AUTHORITY + "/" + TABLE_NAME);
-
     @Override
     public boolean onCreate() {
         return true;
@@ -26,17 +24,14 @@ public class EstateContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] projection, @Nullable String selection, @Nullable String[] selectionArgs, @Nullable String sortOrder) {
-
         if (getContext() != null) {
-            long propertyId = ContentUris.parseId(uri);
-            final Cursor cursor = DataBase.getDatabase(getContext()).propertyDao().getPropertyWithCursor(propertyId);
+            long mandateNumberID = ContentUris.parseId(uri);
+            final Cursor cursor = DataBase.getDatabase(getContext()).propertyDao().getPropertyWithCursor(mandateNumberID);
             cursor.setNotificationUri(getContext().getContentResolver(), uri);
             return cursor;
         }
-
         throw new IllegalArgumentException("Failed to query row for uri " + uri);
     }
-
     @Nullable
     @Override
     public String getType(@NonNull Uri uri) {
@@ -46,9 +41,8 @@ public class EstateContentProvider extends ContentProvider {
     @Nullable
     @Override
     public Uri insert(@NonNull Uri uri, @Nullable ContentValues contentValues) {
-
         if (getContext() != null) {
-            final long id = DataBase.getDatabase(getContext()).propertyDao().insert(Property.buildWithContentValues(contentValues));
+            final long id =DataBase.getDatabase(getContext()).propertyDao().insert(Property.buildWithContentValues(contentValues));
             if (id != 0) {
                 getContext().getContentResolver().notifyChange(uri, null);
                 return ContentUris.withAppendedId(uri, id);
@@ -58,19 +52,22 @@ public class EstateContentProvider extends ContentProvider {
         throw new IllegalArgumentException("Failed to insert row into " + uri);
     }
 
+
     @Override
     public int delete(@NonNull Uri uri, @Nullable String selection, @Nullable String[] selectionArgs) {
         if (getContext() != null) {
-            final int count = DataBase.getDatabase(getContext()).propertyDao().delete(ContentUris.parseId(uri));
+            final int count =DataBase.getDatabase(getContext()).propertyDao().delete(ContentUris.parseId(uri));
             getContext().getContentResolver().notifyChange(uri, null);
             return count;
         }
         throw new IllegalArgumentException("Failed to delete row into " + uri);
     }
 
+
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String selection, @Nullable String[] selectionArgs) {
         if (getContext() != null) {
+            assert contentValues != null;
             final int count = DataBase.getDatabase(getContext()).propertyDao().updateProperty(contentValues.getAsLong("property_id"),
                     contentValues.getAsString("type"),
                     contentValues.getAsString("district"),

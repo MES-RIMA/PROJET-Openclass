@@ -29,10 +29,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyA_u7gxwVw_kgGSwW68xRqqwRfi5btOrCA" />
         <provider
-            android:name=".utils.EstateContentProvider"
-            android:authorities="com.openclassrooms.realestatemanager.utils"
-            android:exported="true"
-            tools:ignore="MissingClass" />
+            android:name=".provider.EstateContentProvider"
+            android:authorities="com.openclassrooms.realestatemanager.provider"
+            android:exported="true" />
 
     </application>
 

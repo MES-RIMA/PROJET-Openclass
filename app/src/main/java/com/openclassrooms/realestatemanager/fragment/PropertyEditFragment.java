@@ -46,14 +46,17 @@ public class PropertyEditFragment extends Fragment implements CommandPictureMana
 
         initPicturesRecyclerView();
         initObservers();
-        initTypeDropDownMenu();
         initAvailableCheckBox();
         initSaveButton();
         initDateButtons();
 
         return mBinding.getRoot();
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        initTypeDropDownMenu();
+    }
     private void initObservers() {
         mPropertyEditViewModel.getCurrentPropertyState().observe(getViewLifecycleOwner(), property -> {
             updateInputs(property);
@@ -119,12 +122,19 @@ public class PropertyEditFragment extends Fragment implements CommandPictureMana
             Toast.makeText(requireActivity(), getString(R.string.property_not_correct), Toast.LENGTH_LONG).show();
             return;
         }
+        if (requireAtLeastOnePicture()) return;
         Property property = generatePropertyFromInputsWithoutMainPicture();
         mPropertyEditViewModel.saveProperty(property);
         Toast.makeText(requireActivity(), getString(R.string.property_successfully_updated), Toast.LENGTH_LONG).show();
         findNavController(view).navigate(R.id.propertyListFragment);
     }
-
+    private boolean requireAtLeastOnePicture() {
+        if (mPictures.size() == 0) {
+            Toast.makeText(requireActivity(), getString(R.string.property_at_least_one_picture), Toast.LENGTH_LONG).show();
+            return true;
+        }
+        return false;
+    }
     @SuppressWarnings("all")
     // Fields nullity is checked before we call this method.
     private Property generatePropertyFromInputsWithoutMainPicture() {

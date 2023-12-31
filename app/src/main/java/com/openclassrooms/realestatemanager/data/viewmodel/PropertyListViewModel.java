@@ -118,6 +118,7 @@ public class PropertyListViewModel extends ViewModel {
     }
 
 
+
     public void deleteCurrentProperty() {
         Property currentProperty = mCurrentProperty.getValue();
         List<PropertyPicture> pictures = mCurrentPropertyPictures.getValue();

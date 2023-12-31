@@ -118,11 +118,20 @@ public class PropertyAddFragment extends Fragment implements CommandPictureManag
             Toast.makeText(requireActivity(), getString(R.string.property_not_correct), Toast.LENGTH_LONG).show();
             return;
         }
+        if (requireAtLeastOnePicture()) return;
         Property property = generatePropertyFromInputsWithoutMainPicture();
         mPropertyAddViewModel.saveProperty(property);
         Toast.makeText(requireActivity(), getString(R.string.property_successfully_created), Toast.LENGTH_LONG).show();
         findNavController(view).navigate(R.id.propertyListFragment);
     }
+    private boolean requireAtLeastOnePicture() {
+        if (mPictures.size() == 0) {
+            Toast.makeText(requireActivity(), getString(R.string.property_at_least_one_picture), Toast.LENGTH_LONG).show();
+            return true;
+        }
+        return false;
+    }
+
     @SuppressWarnings("all")
     // Fields nullity is checked before we call this method.
     private Property generatePropertyFromInputsWithoutMainPicture() {

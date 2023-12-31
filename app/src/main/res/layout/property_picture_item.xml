@@ -11,8 +11,9 @@
 
     <ImageView
         android:id="@+id/picture"
-        android:layout_width="@dimen/property_picture_thumbnail_size"
-        android:layout_height="@dimen/property_picture_thumbnail_size"
+
+        android:layout_width="@dimen/property_picture_thumbnail_size_large"
+        android:layout_height="@dimen/property_picture_thumbnail_size_large"
         android:background="@color/greyLight"
         android:contentDescription="@null"
         android:src="@drawable/ic_baseline_home_24"
