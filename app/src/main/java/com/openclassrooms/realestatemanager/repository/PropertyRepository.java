@@ -68,7 +68,8 @@ public class PropertyRepository {
                                                    boolean hasSwimmingPool,
                                                    boolean hasSchool,
                                                    boolean hasShopping,
-                                                   boolean hasParking, boolean available) {
+                                                   boolean hasParking,
+                                                   boolean available) {
         return mPropertyDao.searchProperty(type,
                 district,
                 minPrice,
